@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
+import BannerAlerta from './components/BannerAlerta'
 
 // ─── Ícones SVG Rápidos ───────────────────────────────────────────────────────
 
@@ -106,15 +107,6 @@ function GoogleMeetIcon() {
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
       <rect x="1" y="4" width="9" height="8" rx="1.5" fill="#1976D2" />
       <path d="M10 7l4-3v8l-4-3V7z" fill="#4CAF50" />
-    </svg>
-  )
-}
-
-function WhatsAppSmallIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path fillRule="evenodd" clipRule="evenodd" d="M8 1a7 7 0 015.53 11.27L15 15l-2.84-1.43A7 7 0 118 1z" fill="#25D366" />
-      <path d="M5.7 5.5c.1.4.4 1.2 1.2 2S8.7 9.2 9.1 9.3c.4.1.6-.1.8-.3l.4-.4c.2-.2.2-.4 0-.6L9.5 7.2c-.2-.2-.4-.2-.6 0l-.2.2c-.1.1-.2.1-.3 0C8.1 7.1 7.1 6.1 7 5.8c-.1-.1-.1-.2 0-.3l.2-.2c.2-.2.2-.4 0-.6L6.4 4c-.2-.2-.4-.2-.6 0l-.4.4C5.2 4.6 5.1 5.1 5.7 5.5z" fill="white" />
     </svg>
   )
 }
@@ -707,7 +699,8 @@ function ContadorCard() {
             <GoogleMeetIcon />
             Meet
           </button>
-          {/* Botão Oficial do WhatsApp com seu link e ícone integrado */}
+          
+          {/* Botão Oficial do WhatsApp com seu número real */}
           <a
             href="https://wa.me/5521993253591?text=Ol%C3%A1%20Sheila!%20Acessei%20a%20demonstra%C3%A7%C3%A3o%20do%20HubCont%C3%A1bil%20e%20gostaria%20de%20conversar%20sobre%20a%20plataforma."
             target="_blank"
@@ -750,96 +743,61 @@ export default function Dashboard() {
   const [bannerVisible, setBannerVisible] = useState(true)
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', width: '100%', background: '#F5F7FB' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', width: '100%', background: '#F5F7FB', overflowX: 'hidden' }}>
       {/* 1. Sidebar Inteligente */}
       <Sidebar activeTab="dashboard" />
 
-        {/* Área de Conteúdo com Alinhamento Perfeito e Respiro Generoso */}
-        <main style={{ flex: 1, padding: '32px 40px', overflowY: 'auto', boxSizing: 'border-box' }}>
-          <div style={{ maxWidth: 1320, margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column', gap: 28 }}>
-            
-            {/* Banner Preventivo */}
-            {bannerVisible && (
-              <div style={{
-                background: 'rgba(67,193,239,0.07)',
-                border: '1px solid rgba(67,193,239,0.4)',
-                borderRadius: 16,
-                padding: '18px 22px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: 16,
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                  <div style={{
-                    width: 42, height: 42, borderRadius: 12,
-                    background: 'rgba(67,193,239,0.15)',
-                    border: '1px solid rgba(67,193,239,0.3)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                  }}>
-                    <ShieldCheckIcon size={22} color="#43C1EF" />
-                  </div>
-                  <div>
-                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14, color: '#030303' }}>
-                      Certificado Digital A1 vence em{' '}
-                      <span style={{ fontFamily: "'Michroma', sans-serif", fontSize: 13, color: '#0E7490' }}>18 dias!</span>
-                    </div>
-                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, color: '#64748B', marginTop: 3 }}>
-                      Evite bloqueio na emissão de NF-e. Renove online em 5 minutos com desconto exclusivo.
-                    </div>
-                  </div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-                  <button style={{
-                    fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600, fontSize: 13,
-                    color: '#fff', background: '#1D4ED8',
-                    border: 'none', borderRadius: 10, padding: '9px 18px', cursor: 'pointer',
-                    boxShadow: '0 2px 10px rgba(29,78,216,0.25)'
-                  }}>
-                    Renovar Certificado
-                  </button>
-                  <button
-                    onClick={() => setBannerVisible(false)}
-                    style={{
-                      width: 32, height: 32, borderRadius: 8,
-                      background: 'rgba(100,116,139,0.08)', border: 'none',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <XIcon />
-                  </button>
-                </div>
-              </div>
-            )}
+      {/* 2. Área de Conteúdo */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, overflowX: 'hidden' }}>
+        <Topbar title="Dashboard Geral" subtitle="Competência: Setembro / 2024" />
 
-            {/* LINHA DE KPIS COM ESPAÇAMENTO PERFEITO */}
-            <div className="kpi-grid">
-              <KPITributos />
-              <KPIVencimento />
-              <KPICertificado />
-              <KPINotas />
-            </div>
+        {/* Container Responsivo Fluido */}
+        <main className="hub-main-content">
+          
+          {/* Banner Preventivo Padronizado */}
+          {bannerVisible && (
+            <BannerAlerta
+              titulo={
+                <>
+                  Certificado Digital A1 vence em{' '}
+                  <span style={{ fontFamily: "'Michroma', sans-serif", fontSize: 13, color: '#0E7490' }}>
+                    18 dias!
+                  </span>
+                </>
+              }
+              descricao="Evite o bloqueio imediato na emissão de NF-e. Renove online em 5 minutos com condição exclusiva."
+              botaoTexto="Renovar Certificado"
+              fechavel={true}
+              onFechar={() => setBannerVisible(false)}
+            />
+          )}
 
-            {/* GRID PRINCIPAL */}
-            <div className="dashboard-layout">
-              {/* Coluna Esquerda */}
-              <div className="dashboard-main-col">
-                <ObrigacoesCard />
-                <AcoesRapidasCard />
-              </div>
-
-              {/* Coluna Direita */}
-              <div className="dashboard-side-col">
-                <CalendarioCard />
-                <FaturaCard />
-                <ContadorCard />
-              </div>
-            </div>
-
+          {/* 4 CARDS LADO A LADO NO DESKTOP / 2 NO TABLET / 1 NO CELULAR COM RESPIRO */}
+          <div className="hub-kpi-grid">
+            <KPITributos />
+            <KPIVencimento />
+            <KPICertificado />
+            <KPINotas />
           </div>
+
+          {/* GRID PRINCIPAL: LADO A LADO NO DESKTOP / EMPILHADO NO MOBILE */}
+          <div className="hub-split-grid">
+            {/* Coluna Esquerda (Tabela + Ações) */}
+            <div className="hub-col-main">
+              <ObrigacoesCard />
+              <AcoesRapidasCard />
+            </div>
+
+            {/* Coluna Direita (Rotinas + Fatura + Contador) */}
+            <div className="hub-col-side">
+              <CalendarioCard />
+              <FaturaCard />
+              <ContadorCard />
+            </div>
+          </div>
+
         </main>
+      </div>
     </div>
   )
 }

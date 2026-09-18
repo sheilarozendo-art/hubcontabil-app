@@ -29,8 +29,8 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
   const menuContent = (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', padding: '24px 20px', boxSizing: 'border-box' }}>
       <div>
-        {/* Logo HubContábil Oficial (SEM o X aqui) */}
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
+        {/* Logo HubContábil Oficial */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }}>
               <div style={{ display: 'flex', alignItems: 'flex-end', gap: 5, height: 32 }}>
@@ -44,6 +44,17 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
               </div>
             </div>
           </Link>
+
+          {/* Botão X para fechar gaveta no mobile */}
+          {mobileOpen && (
+            <button 
+              onClick={() => setMobileOpen(false)}
+              className="lg:hidden"
+              style={{ background: '#F1F5F9', border: 'none', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+            >
+              <X size={18} color="#64748B" />
+            </button>
+          )}
         </div>
 
         {/* Empresa Ativa */}
@@ -194,76 +205,27 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
       {/* Botão Hambúrguer flutuante (Só visível no celular/tablet) */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="btn-menu-mobile"
-        style={{
-          display: 'none',
-          position: 'fixed',
-          bottom: 20,
-          right: 20,
-          zIndex: 9999,
-          background: '#1D4ED8',
-          color: '#FFFFFF',
-          border: 'none',
-          borderRadius: '50%',
-          width: 52,
-          height: 52,
-          boxShadow: '0 8px 24px rgba(29,78,216,0.4)',
-          cursor: 'pointer',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+        className="flex lg:hidden fixed bottom-5 right-5 z-50 bg-[#1D4ED8] text-white border-none rounded-full w-13 h-13 shadow-xl cursor-pointer items-center justify-center"
         aria-label="Abrir Menu"
       >
         <Menu size={24} />
       </button>
 
-      {/* Barra Lateral Fixa do Desktop */}
+      {/* Barra Lateral Fixa do Desktop (FICA OCULTA NO CELULAR E SÓ APARECE NO COMPUTADOR!) */}
       <aside 
-        className="sidebar-desktop"
-        style={{
-          width: 270,
-          minWidth: 270,
-          background: '#FFFFFF',
-          borderRight: '1px solid #E2E8F0',
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          flexShrink: 0,
-        }}
+        className="hidden lg:flex flex-col justify-between w-[270px] min-w-[270px] bg-white border-r border-[#E2E8F0] min-h-screen shrink-0"
       >
         {menuContent}
       </aside>
 
-      {/* Gaveta Deslizante no Mobile (O "X" fica EXCLUSIVAMENTE aqui) */}
+      {/* Gaveta Deslizante no Mobile */}
       {mobileOpen && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 99999, display: 'flex' }}>
+        <div className="fixed inset-0 z-50 flex lg:hidden">
           <div 
             onClick={() => setMobileOpen(false)}
-            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(3px)' }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-xs"
           />
-          <div style={{ position: 'relative', width: 280, maxWidth: '85%', background: '#FFFFFF', height: '100%', zIndex: 10, boxShadow: '0 0 30px rgba(0,0,0,0.3)' }}>
-            {/* Botão X exclusivo da gaveta mobile */}
-            <button 
-              onClick={() => setMobileOpen(false)}
-              style={{
-                position: 'absolute',
-                top: 20,
-                right: 16,
-                zIndex: 20,
-                background: '#F1F5F9',
-                border: 'none',
-                borderRadius: '50%',
-                width: 32,
-                height: 32,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer'
-              }}
-            >
-              <X size={18} color="#64748B" />
-            </button>
+          <div className="relative w-[280px] max-w-[85%] bg-white h-full shadow-2xl z-10 flex flex-col justify-between">
             {menuContent}
           </div>
         </div>

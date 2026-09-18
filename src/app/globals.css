@@ -3,10 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, sans-serif;
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
     background-color: #F5F7FB;
     color: #030303;
+    font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, sans-serif;
   }
 }
 
@@ -14,41 +16,52 @@
   font-family: var(--font-michroma), monospace;
 }
 
-/* Sombra ultra-suave estilo Linear/Stripe */
+/* Sombra suave dos cards */
 .card-shadow {
   box-shadow: 0px 1px 3px rgba(3, 3, 3, 0.04), 0px 6px 16px rgba(3, 3, 3, 0.02);
 }
 
-/* ─── Regras de Responsividade do HubContábil ─── */
+/* ─── CONTAINER PRINCIPAL FLUIDO DO DASHBOARD ─── */
+.hub-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 1360px;
+  padding: 24px 32px;
+  box-sizing: border-box;
+  min-width: 0;
+}
 
-/* 1. Grade dos 4 Cards de Métricas (Desktop: 4 colunas com respiro de 16px) */
-.kpi-grid {
+/* ─── GRADE DOS 4 CARDS (DESKTOP: 4 COLUNAS LADO A LADO) ─── */
+.hub-kpi-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   align-items: start;
+  width: 100%;
 }
 
-/* 2. Layout Principal Dividido (Desktop: Lado a Lado) */
-.dashboard-layout {
+/* ─── LAYOUT DIVIDIDO (DESKTOP: COLUNA ESQUERDA + COLUNA DIREITA) ─── */
+.hub-split-grid {
   display: flex;
+  flex-direction: row;
   gap: 24px;
   align-items: flex-start;
   width: 100%;
-  max-width: 100%;
+  min-width: 0;
 }
 
-.dashboard-main-col {
+.hub-col-main {
   flex: 1;
   min-width: 0;
-  width: 100%;
-  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.dashboard-side-col {
+.hub-col-side {
   width: 340px;
   flex-shrink: 0;
   display: flex;
@@ -56,110 +69,46 @@
   gap: 20px;
 }
 
-/* Tabela de obrigações: rola no card, não na página */
-.obrigacoes-card {
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.obrigacoes-table-wrap {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.obrigacoes-table {
-  min-width: 640px;
-  width: 100%;
-}
-
-/* 3. Tablet e iPad (inclui 820px) — colunas empilhadas abaixo de 1100px */
-@media (max-width: 1099px) {
-  .dashboard-layout {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .dashboard-main-col,
-  .dashboard-side-col {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-/* 4. Comportamento no Tablet (iPad <= 1024px) */
+/* ─── TABLET (iPad <= 1024px) ─── */
 @media (max-width: 1024px) {
-  .kpi-grid {
+  .hub-main-content {
+    padding: 20px 20px;
+    gap: 20px;
+  }
+  .hub-kpi-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-  .sidebar-desktop {
-    display: none !important;
+  .hub-split-grid {
+    flex-direction: column;
   }
-  .btn-menu-mobile {
-    display: flex !important;
+  .hub-col-side {
+    width: 100%;
   }
 }
 
-/* 5. Comportamento no Celular (iPhone/Pixel <= 640px) */
+/* ─── CELULAR (iPhone / Pixel <= 640px) ─── */
 @media (max-width: 640px) {
-  .kpi-grid {
-    grid-template-columns: 1fr; /* 1 card por linha */
+  .hub-main-content {
+    padding: 16px 14px;
+    gap: 16px;
+  }
+  .hub-kpi-grid {
+    grid-template-columns: 1fr;
     gap: 16px; /* O ESPAÇO ELEGANTE QUE VOCÊ PEDIU! */
   }
 }
 
-/* Abas horizontais: rolagem suave no celular, scrollbar invisível */
-.tabs-scroll {
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  gap: 8px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+/* Scrollbar suave e fina para tabelas */
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
 }
-
-.tabs-scroll::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 999px;
 }
-
-/* Tabelas internas: scroll horizontal sem vazar a página */
-.table-scroll {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* ─── Grade dos 3 Cards de Tributos ─── */
-.tributos-kpis {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas lado a lado no PC */
-  gap: 16px;
-  align-items: start;
-}
-
-@media (max-width: 900px) {
-  .tributos-kpis {
-    grid-template-columns: 1fr; /* 1 coluna no celular */
-  }
-}
-
-/* ─── Layout White-Label Definitivo ─── */
-.whitelabel-layout {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr; /* 2 colunas lado a lado no PC: Form na Esquerda, Preview na Direita */
-  gap: 28px;
-  align-items: start;
-}
-
-/* No Tablet e Celular: Empilha verticalmente com respiro */
-@media (max-width: 1024px) {
-  .whitelabel-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 999px;
 }
