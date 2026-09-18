@@ -756,7 +756,7 @@ export default function Dashboard() {
 
         {/* Área de Conteúdo com Alinhamento Perfeito e Respiro Generoso */}
         <main style={{ flex: 1, padding: '32px 40px', overflowY: 'auto', boxSizing: 'border-box' }}>
-          <div style={{ maxWidth: 1360, display: 'flex', flexDirection: 'column', gap: 28 }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column', gap: 28 }}>
             
             {/* Banner Preventivo */}
             {bannerVisible && (
