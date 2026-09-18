@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #F5F7FB;
+    color: #030303;
+  }
+}
+
+.font-michroma {
+  font-family: var(--font-michroma), monospace;
+}
+
+/* Sombra ultra-suave estilo Linear/Stripe */
+.card-shadow {
+  box-shadow: 0px 1px 3px rgba(3, 3, 3, 0.04), 0px 6px 16px rgba(3, 3, 3, 0.02);
+}
