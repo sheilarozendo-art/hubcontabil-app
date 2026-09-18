@@ -12,9 +12,7 @@ import {
   CheckCircle2, 
   MessageSquare, 
   Plus, 
-  Search, 
   Star,
-  ExternalLink,
   ChevronRight
 } from "lucide-react";
 
@@ -104,19 +102,25 @@ export default function SolicitacoesPage() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', width: '100%', background: '#F5F7FB' }}>
-      {/* 1. Sidebar Ativa em 'solicitacoes' */}
       <Sidebar activeTab="solicitacoes" />
 
-      {/* 2. Área Principal */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
         <Topbar title="Central de Solicitações & Serviços" subtitle="Abra demandas e acompanhe o fluxo de atendimento da sua contabilidade sem ruídos" />
 
-        <main style={{ flex: 1, padding: '28px 36px', overflowY: 'auto' }}>
-          <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
+        {/* Espaçamento generoso de 32px no topo e laterais */}
+        <main style={{ flex: 1, padding: '28px 20px', overflowY: 'auto', boxSizing: 'border-box' }}>
+            <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 28 }}>
 
-            {/* BANNER DE CATÁLOGO OPERACIONAL */}
+            {/* 1. Catálogo de Serviços */}
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+              <div style={{ 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                alignItems: 'center', 
+                justifyContent: 'space-between', 
+                gap: 12, 
+                marginBottom: 16 
+              }}>
                 <div>
                   <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 15, color: '#030303' }}>
                     Catálogo de Serviços Contábeis
@@ -126,26 +130,31 @@ export default function SolicitacoesPage() {
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#EFF6FF', padding: '6px 12px', borderRadius: 999 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#EFF6FF', padding: '6px 14px', borderRadius: 999 }}>
                   <Clock size={13} color="#1D4ED8" />
                   <span style={{ fontSize: 11.5, fontWeight: 700, color: '#1D4ED8' }}>SLA Médio de Resposta: 4h úteis</span>
                 </div>
               </div>
 
-              {/* 4 Cards de Serviços Rápidos */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+              {/* 4 Cards de Serviços com Grid Perfeito */}
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', 
+                gap: 16 
+              }}>
                 {SERVICOS_RAPIDOS.map(s => (
                   <div key={s.id} style={{
                     background: '#FFFFFF',
                     border: '1px solid #E2E8F0',
                     borderRadius: 16,
-                    padding: '20px',
+                    padding: '22px 20px',
                     cursor: 'pointer',
                     boxShadow: '0 4px 16px rgba(3,3,3,0.04)',
                     transition: 'all 0.15s ease',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    boxSizing: 'border-box'
                   }}
                   onMouseEnter={e => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
@@ -158,10 +167,10 @@ export default function SolicitacoesPage() {
                   >
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-                        <div style={{ width: 38, height: 38, borderRadius: 10, background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div style={{ width: 40, height: 40, borderRadius: 10, background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           {s.icon}
                         </div>
-                        <span style={{ fontSize: 10.5, fontWeight: 700, color: '#64748B', background: '#F8FAFC', border: '1px solid #E2E8F0', padding: '2px 7px', borderRadius: 6 }}>
+                        <span style={{ fontSize: 10.5, fontWeight: 700, color: '#64748B', background: '#F8FAFC', border: '1px solid #E2E8F0', padding: '2px 8px', borderRadius: 6 }}>
                           {s.categoria}
                         </span>
                       </div>
@@ -174,7 +183,7 @@ export default function SolicitacoesPage() {
                     </div>
 
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #F1F5F9', marginTop: 14, paddingTop: 10 }}>
-                      <span style={{ fontSize: 11, fontWeight: 600, color: s.cor }}>Iniciar Solicitação</span>
+                      <span style={{ fontSize: 11.5, fontWeight: 600, color: s.cor }}>Iniciar Solicitação</span>
                       <ChevronRight size={14} color={s.cor} />
                     </div>
                   </div>
@@ -182,46 +191,57 @@ export default function SolicitacoesPage() {
               </div>
             </div>
 
-            {/* LINHA DE INDICADORES DE ATENDIMENTO */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '20px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+            {/* 2. Indicadores de Atendimento */}
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
+              gap: 16 
+            }}>
+              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontSize: 12, fontWeight: 600, color: '#64748B' }}>Solicitações em Aberto</span>
                   <span style={{ background: '#FEF3C7', color: '#D97706', fontSize: 10.5, fontWeight: 700, padding: '2px 8px', borderRadius: 999 }}>2 ativas</span>
                 </div>
-                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#030303', marginTop: 8 }}>2 Pedidos</div>
-                <div style={{ fontSize: 11.5, color: '#64748B', marginTop: 4 }}>Em processamento pela equipe contábil</div>
+                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#030303', marginTop: 10 }}>2 Pedidos</div>
+                <div style={{ fontSize: 11.5, color: '#64748B', marginTop: 6 }}>Em processamento pela equipe contábil</div>
               </div>
 
-              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '20px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontSize: 12, fontWeight: 600, color: '#64748B' }}>Concluídas no Mês</span>
                   <span style={{ background: '#DCFCE7', color: '#15803D', fontSize: 10.5, fontWeight: 700, padding: '2px 8px', borderRadius: 999 }}>100% no prazo</span>
                 </div>
-                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#15803D', marginTop: 8 }}>14 Demandas</div>
-                <div style={{ fontSize: 11.5, color: '#64748B', marginTop: 4 }}>Histórico completo arquivado no cofre</div>
+                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#15803D', marginTop: 10 }}>14 Demandas</div>
+                <div style={{ fontSize: 11.5, color: '#64748B', marginTop: 6 }}>Histórico arquivado no cofre</div>
               </div>
 
-              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '20px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontSize: 12, fontWeight: 600, color: '#64748B' }}>Satisfação do Atendimento</span>
                   <div style={{ display: 'flex', gap: 2 }}>
                     {[1, 2, 3, 4, 5].map(i => (
-                      <Star key={i} size={13} fill="#F59E0B" color="#F59E0B" />
+                      <Star key={i} size={14} fill="#F59E0B" color="#F59E0B" />
                     ))}
                   </div>
                 </div>
-                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#030303', marginTop: 8 }}>4.9 / 5.0</div>
-                <div style={{ fontSize: 11.5, color: '#64748B', marginTop: 4 }}>Avaliação da titular Sheila Rozendo</div>
+                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#030303', marginTop: 10 }}>4.9 / 5.0</div>
+                <div style={{ fontSize: 11.5, color: '#64748B', marginTop: 6 }}>Avaliação da titular Sheila Rozendo</div>
               </div>
             </div>
 
-            {/* TABELA DE ACOMPANHAMENTO DE CHAMADOS */}
+            {/* 3. Tabela de Acompanhamento */}
             <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: 0, overflow: 'hidden', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
               
-              {/* Header com Filtros e Ação */}
-              <div style={{ padding: '20px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #F1F5F9' }}>
-                <div style={{ display: 'flex', gap: 6 }}>
+              <div style={{ 
+                padding: '20px 24px', 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                alignItems: 'center', 
+                justifyContent: 'space-between', 
+                gap: 12,
+                borderBottom: '1px solid #F1F5F9' 
+              }}>
+                <div style={{ display: 'flex', gap: 6, overflowX: 'auto', maxWidth: '100%' }}>
                   {[
                     { id: "todas", label: "Todas as Solicitações (3)" },
                     { id: "andamento", label: "Em Andamento (2)" },
@@ -238,8 +258,10 @@ export default function SolicitacoesPage() {
                         background: filtroStatus === tab.id ? '#EFF6FF' : 'transparent',
                         border: 'none',
                         borderRadius: 8,
-                        padding: '6px 12px',
-                        cursor: 'pointer'
+                        padding: '7px 14px',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0
                       }}
                     >
                       {tab.label}
@@ -258,8 +280,9 @@ export default function SolicitacoesPage() {
                   background: '#1D4ED8',
                   border: 'none',
                   borderRadius: 10,
-                  padding: '8px 16px',
+                  padding: '9px 18px',
                   cursor: 'pointer',
+                  whiteSpace: 'nowrap',
                   boxShadow: '0 2px 8px rgba(29,78,216,0.25)'
                 }}>
                   <Plus size={14} />
@@ -267,17 +290,17 @@ export default function SolicitacoesPage() {
                 </button>
               </div>
 
-              {/* Tabela */}
-              <div style={{ width: '100%', overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+              {/* Tabela com Rolagem Suave */}
+              <div style={{ width: '100%', maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                <table style={{ width: '100%', minWidth: 650, borderCollapse: 'collapse', textAlign: 'left' }}>
                   <thead>
                     <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #F1F5F9' }}>
-                      <th style={{ padding: '12px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Protocolo</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Assunto / Demanda</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Solicitante</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Abertura</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Status do Pedido</th>
-                      <th style={{ padding: '12px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', textAlign: 'right' }}>Ações</th>
+                      <th style={{ padding: '14px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Protocolo</th>
+                      <th style={{ padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Assunto / Demanda</th>
+                      <th style={{ padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Solicitante</th>
+                      <th style={{ padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Abertura</th>
+                      <th style={{ padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Status do Pedido</th>
+                      <th style={{ padding: '14px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', textAlign: 'right' }}>Ações</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -297,7 +320,7 @@ export default function SolicitacoesPage() {
                           </span>
                         </td>
 
-                        <td style={{ padding: '16px 14px' }}>
+                        <td style={{ padding: '16px 16px' }}>
                           <div>
                             <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600, fontSize: 13, color: '#030303' }}>
                               {item.servico}
@@ -308,15 +331,15 @@ export default function SolicitacoesPage() {
                           </div>
                         </td>
 
-                        <td style={{ padding: '16px 14px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, color: '#030303', fontWeight: 500 }}>
+                        <td style={{ padding: '16px 16px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, color: '#030303', fontWeight: 500 }}>
                           {item.solicitante}
                         </td>
 
-                        <td style={{ padding: '16px 14px', fontFamily: "'Inter', sans-serif", fontSize: 12, color: '#64748B' }}>
+                        <td style={{ padding: '16px 16px', fontFamily: "'Inter', sans-serif", fontSize: 12, color: '#64748B' }}>
                           {item.data}
                         </td>
 
-                        <td style={{ padding: '16px 14px' }}>
+                        <td style={{ padding: '16px 16px' }}>
                           <span style={{
                             display: 'inline-flex',
                             alignItems: 'center',
@@ -347,7 +370,7 @@ export default function SolicitacoesPage() {
                             background: '#EFF6FF',
                             border: '1px solid rgba(29,78,216,0.15)',
                             borderRadius: 8,
-                            padding: '6px 12px',
+                            padding: '7px 14px',
                             cursor: 'pointer'
                           }}>
                             <MessageSquare size={13} />

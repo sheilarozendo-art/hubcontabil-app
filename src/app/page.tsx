@@ -754,12 +754,9 @@ export default function Dashboard() {
       {/* 1. Sidebar Inteligente */}
       <Sidebar activeTab="dashboard" />
 
-      {/* 2. Área de Conteúdo */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-        <Topbar title="Dashboard Geral" subtitle="Competência: Setembro / 2024" />
-
-        <main style={{ flex: 1, padding: '24px 20px', overflowY: 'auto' }}>
-          <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 20 }}>
+        {/* Área de Conteúdo com Alinhamento Perfeito e Respiro Generoso */}
+        <main style={{ flex: 1, padding: '32px 40px', overflowY: 'auto', boxSizing: 'border-box' }}>
+          <div style={{ maxWidth: 1360, display: 'flex', flexDirection: 'column', gap: 28 }}>
             
             {/* Banner Preventivo */}
             {bannerVisible && (
@@ -767,7 +764,7 @@ export default function Dashboard() {
                 background: 'rgba(67,193,239,0.07)',
                 border: '1px solid rgba(67,193,239,0.4)',
                 borderRadius: 16,
-                padding: '16px 20px',
+                padding: '18px 22px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
@@ -776,20 +773,20 @@ export default function Dashboard() {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                   <div style={{
-                    width: 40, height: 40, borderRadius: 12,
+                    width: 42, height: 42, borderRadius: 12,
                     background: 'rgba(67,193,239,0.15)',
                     border: '1px solid rgba(67,193,239,0.3)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                   }}>
-                    <ShieldCheckIcon size={20} color="#43C1EF" />
+                    <ShieldCheckIcon size={22} color="#43C1EF" />
                   </div>
                   <div>
-                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 13.5, color: '#030303' }}>
+                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14, color: '#030303' }}>
                       Certificado Digital A1 vence em{' '}
                       <span style={{ fontFamily: "'Michroma', sans-serif", fontSize: 13, color: '#0E7490' }}>18 dias!</span>
                     </div>
-                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, color: '#64748B', marginTop: 2 }}>
-                      Evite bloqueio na emissão de NF-e. Renove online em 5 minutos.
+                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, color: '#64748B', marginTop: 3 }}>
+                      Evite bloqueio na emissão de NF-e. Renove online em 5 minutos com desconto exclusivo.
                     </div>
                   </div>
                 </div>
@@ -798,13 +795,14 @@ export default function Dashboard() {
                     fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600, fontSize: 13,
                     color: '#fff', background: '#1D4ED8',
                     border: 'none', borderRadius: 10, padding: '9px 18px', cursor: 'pointer',
+                    boxShadow: '0 2px 10px rgba(29,78,216,0.25)'
                   }}>
                     Renovar Certificado
                   </button>
                   <button
                     onClick={() => setBannerVisible(false)}
                     style={{
-                      width: 30, height: 30, borderRadius: 8,
+                      width: 32, height: 32, borderRadius: 8,
                       background: 'rgba(100,116,139,0.08)', border: 'none',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       cursor: 'pointer',
@@ -816,7 +814,7 @@ export default function Dashboard() {
               </div>
             )}
 
-                        {/* LINHA DE KPIS COM ESPAÇAMENTO PERFEITO */}
+            {/* LINHA DE KPIS COM ESPAÇAMENTO PERFEITO */}
             <div className="kpi-grid">
               <KPITributos />
               <KPIVencimento />
@@ -842,7 +840,6 @@ export default function Dashboard() {
 
           </div>
         </main>
-      </div>
     </div>
   )
 }

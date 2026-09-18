@@ -34,11 +34,15 @@
   display: flex;
   gap: 24px;
   align-items: flex-start;
+  width: 100%;
+  max-width: 100%;
 }
 
 .dashboard-main-col {
   flex: 1;
   min-width: 0;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -52,17 +56,44 @@
   gap: 20px;
 }
 
-/* 3. Comportamento no Tablet (iPad <= 1024px) */
+/* Tabela de obrigações: rola no card, não na página */
+.obrigacoes-card {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.obrigacoes-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.obrigacoes-table {
+  min-width: 640px;
+  width: 100%;
+}
+
+/* 3. Tablet e iPad (inclui 820px) — colunas empilhadas abaixo de 1100px */
+@media (max-width: 1099px) {
+  .dashboard-layout {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .dashboard-main-col,
+  .dashboard-side-col {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* 4. Comportamento no Tablet (iPad <= 1024px) */
 @media (max-width: 1024px) {
   .kpi-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-  }
-  .dashboard-layout {
-    flex-direction: column;
-  }
-  .dashboard-side-col {
-    width: 100%;
   }
   .sidebar-desktop {
     display: none !important;
@@ -72,10 +103,63 @@
   }
 }
 
-/* 4. Comportamento no Celular (iPhone/Pixel <= 640px) */
+/* 5. Comportamento no Celular (iPhone/Pixel <= 640px) */
 @media (max-width: 640px) {
   .kpi-grid {
     grid-template-columns: 1fr; /* 1 card por linha */
     gap: 16px; /* O ESPAÇO ELEGANTE QUE VOCÊ PEDIU! */
+  }
+}
+
+/* Abas horizontais: rolagem suave no celular, scrollbar invisível */
+.tabs-scroll {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 8px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabs-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tabelas internas: scroll horizontal sem vazar a página */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── Grade dos 3 Cards de Tributos ─── */
+.tributos-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas lado a lado no PC */
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .tributos-kpis {
+    grid-template-columns: 1fr; /* 1 coluna no celular */
+  }
+}
+
+/* ─── Layout White-Label Definitivo ─── */
+.whitelabel-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* 2 colunas lado a lado no PC: Form na Esquerda, Preview na Direita */
+  gap: 28px;
+  align-items: start;
+}
+
+/* No Tablet e Celular: Empilha verticalmente com respiro */
+@media (max-width: 1024px) {
+  .whitelabel-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 }

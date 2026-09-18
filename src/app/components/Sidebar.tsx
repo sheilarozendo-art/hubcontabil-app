@@ -29,8 +29,8 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
   const menuContent = (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', padding: '24px 20px', boxSizing: 'border-box' }}>
       <div>
-        {/* Logo HubContábil */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+        {/* Logo HubContábil Oficial (SEM o X aqui) */}
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }}>
               <div style={{ display: 'flex', alignItems: 'flex-end', gap: 5, height: 32 }}>
@@ -44,15 +44,6 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
               </div>
             </div>
           </Link>
-
-          {/* Botão X para fechar gaveta no mobile */}
-          <button 
-            onClick={() => setMobileOpen(false)}
-            className="lg:hidden"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}
-          >
-            <X size={20} color="#64748B" />
-          </button>
         </div>
 
         {/* Empresa Ativa */}
@@ -144,7 +135,7 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
             Resposta média em até 15 min.
           </div>
           <a
-            href="https://wa.me/5521993253591?text=Ol%C3%A1%20Sheila!%20Acessei%20o%20HubCont%C3%A1bil%20e%20gostaria%20de%20conversar."
+            href="https://wa.me/55SEUDDDSEUNUMERO?text=Ol%C3%A1%20Sheila!%20Acessei%20o%20HubCont%C3%A1bil%20e%20gostaria%20de%20conversar."
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -198,9 +189,9 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
     </div>
   );
 
-return (
+  return (
     <>
-      {/* Botão Hambúrguer flutuante (Só no celular/tablet) */}
+      {/* Botão Hambúrguer flutuante (Só visível no celular/tablet) */}
       <button
         onClick={() => setMobileOpen(true)}
         className="btn-menu-mobile"
@@ -226,7 +217,7 @@ return (
         <Menu size={24} />
       </button>
 
-      {/* Barra Lateral Fixa (No computador) */}
+      {/* Barra Lateral Fixa do Desktop */}
       <aside 
         className="sidebar-desktop"
         style={{
@@ -244,7 +235,7 @@ return (
         {menuContent}
       </aside>
 
-      {/* Gaveta Deslizante (Quando clica no botão no celular) */}
+      {/* Gaveta Deslizante no Mobile (O "X" fica EXCLUSIVAMENTE aqui) */}
       {mobileOpen && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 99999, display: 'flex' }}>
           <div 
@@ -252,10 +243,31 @@ return (
             style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(3px)' }}
           />
           <div style={{ position: 'relative', width: 280, maxWidth: '85%', background: '#FFFFFF', height: '100%', zIndex: 10, boxShadow: '0 0 30px rgba(0,0,0,0.3)' }}>
+            {/* Botão X exclusivo da gaveta mobile */}
+            <button 
+              onClick={() => setMobileOpen(false)}
+              style={{
+                position: 'absolute',
+                top: 20,
+                right: 16,
+                zIndex: 20,
+                background: '#F1F5F9',
+                border: 'none',
+                borderRadius: '50%',
+                width: 32,
+                height: 32,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer'
+              }}
+            >
+              <X size={18} color="#64748B" />
+            </button>
             {menuContent}
           </div>
         </div>
       )}
     </>
-  )
+  );
 }

@@ -2,19 +2,9 @@
 
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
-import BannerAlerta from "../components/BannerAlerta";
 import Topbar from "../components/Topbar";
-import { 
-  Download, 
-  Copy, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Filter, 
-  ArrowUpDown,
-  FileCheck2,
-  Receipt,
-  FileSpreadsheet
-} from "lucide-react";
+import BannerAlerta from "../components/BannerAlerta";
+import { Download, Copy, CheckCircle2 } from "lucide-react";
 
 const TRIBUTOS_DATA = [
   {
@@ -99,57 +89,66 @@ export default function TributosPage() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', width: '100%', background: '#F5F7FB' }}>
-      {/* 1. Sidebar Ativa em 'tributos' */}
       <Sidebar activeTab="tributos" />
 
-      {/* 2. Área de Conteúdo */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
         <Topbar title="Tributos & Guias Fiscais" subtitle="Gestão centralizada de guias, apurações e comprovantes de quitação" />
 
-        <main style={{ flex: 1, padding: '28px 36px', overflowY: 'auto' }}>
-          <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <main style={{ flex: 1, padding: '32px 24px', overflowY: 'auto', boxSizing: 'border-box' }} className="sm:!p-8 lg:!p-10">
+          <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 28 }}>
             
-            {/* Banner Padronizado CND */}
+            {/* 1. Banner CND */}
             <BannerAlerta
               titulo="Situação Fiscal 100% Regular perante a Receita Federal"
               descricao="Certidão Negativa de Débitos (CND Federal) emitida e válida até 14/12/2024."
               botaoTexto="Baixar CND Atualizada"
             />
 
-            {/* Linha de KPIs de Tributos */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '20px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+            {/* 2. KPIs de Tributos com 3 Colunas Perfeitas no Desktop */}
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
+              gap: 16 
+            }}>
+              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
                 <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, fontWeight: 600, color: '#64748B' }}>Total Apurado (Setembro)</div>
-                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#030303', marginTop: 8 }}>R$ 4.820,50</div>
-                <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11.5, color: '#64748B', marginTop: 4 }}>4 guias geradas pela contabilidade</div>
+                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#030303', marginTop: 10 }}>R$ 4.820,50</div>
+                <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11.5, color: '#64748B', marginTop: 6 }}>4 guias geradas pela contabilidade</div>
               </div>
 
-              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '20px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, fontWeight: 600, color: '#64748B' }}>Total Pendente</div>
                   <span style={{ background: '#FEF3C7', color: '#D97706', fontSize: 10.5, fontWeight: 700, padding: '2px 8px', borderRadius: 999 }}>1 a vencer</span>
                 </div>
-                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#D97706', marginTop: 8 }}>R$ 1.240,00</div>
-                <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11.5, color: '#64748B', marginTop: 4 }}>DAS Simples vence dia 20/10</div>
+                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#D97706', marginTop: 10 }}>R$ 1.240,00</div>
+                <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11.5, color: '#64748B', marginTop: 6 }}>DAS Simples vence dia 20/10</div>
               </div>
 
-              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '20px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+              <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, fontWeight: 600, color: '#64748B' }}>Total Liquidado</div>
                   <span style={{ background: '#DCFCE7', color: '#15803D', fontSize: 10.5, fontWeight: 700, padding: '2px 8px', borderRadius: 999 }}>3 quitadas</span>
                 </div>
-                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#15803D', marginTop: 8 }}>R$ 3.580,50</div>
-                <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11.5, color: '#64748B', marginTop: 4 }}>Comprovantes arquivados no cofre</div>
+                <div style={{ fontFamily: "'Michroma', sans-serif", fontSize: 24, color: '#15803D', marginTop: 10 }}>R$ 3.580,50</div>
+                <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11.5, color: '#64748B', marginTop: 6 }}>Comprovantes arquivados no cofre</div>
               </div>
             </div>
 
-            {/* Container da Tabela com Filtros */}
+            {/* 3. Tabela de Guias com Botões Impecáveis */}
             <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: 0, overflow: 'hidden', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
               
-              {/* Header da Tabela */}
-              <div style={{ padding: '20px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #F1F5F9' }}>
-                {/* Abas */}
-                <div style={{ display: 'flex', gap: 6 }}>
+              {/* Header com Abas e Botão ZIP */}
+              <div style={{ 
+                padding: '20px 24px', 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                gap: 16, 
+                alignItems: 'center', 
+                justifyContent: 'space-between', 
+                borderBottom: '1px solid #F1F5F9' 
+              }}>
+                <div style={{ display: 'flex', gap: 6, overflowX: 'auto', maxWidth: '100%', paddingBottom: 2 }}>
                   {[
                     { id: "todas", label: "Todas as Guias (4)" },
                     { id: "pendentes", label: "Pendentes (1)" },
@@ -169,6 +168,7 @@ export default function TributosPage() {
                         borderRadius: 10,
                         padding: '8px 14px',
                         cursor: 'pointer',
+                        whiteSpace: 'nowrap',
                         transition: 'all 0.15s ease'
                       }}
                     >
@@ -177,7 +177,6 @@ export default function TributosPage() {
                   ))}
                 </div>
 
-                {/* Botão Baixar Lote */}
                 <button style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -189,25 +188,26 @@ export default function TributosPage() {
                   background: '#EFF6FF',
                   border: '1px solid rgba(29,78,216,0.15)',
                   borderRadius: 10,
-                  padding: '8px 14px',
+                  padding: '9px 16px',
                   cursor: 'pointer',
+                  whiteSpace: 'nowrap'
                 }}>
                   <Download size={14} />
                   <span>Baixar Pacote do Mês (.ZIP)</span>
                 </button>
               </div>
 
-              {/* Tabela de Guias */}
-              <div style={{ width: '100%', overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+              {/* Tabela com Rolagem Suave e Botões Alinhados */}
+              <div style={{ width: '100%', maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                <table style={{ width: '100%', minWidth: 720, borderCollapse: 'collapse', textAlign: 'left' }}>
                   <thead>
                     <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #F1F5F9' }}>
-                      <th style={{ padding: '12px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Obrigação Fiscal</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Competência</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Vencimento</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Valor da Guia</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Status</th>
-                      <th style={{ padding: '12px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', textAlign: 'right' }}>Ações Rápidas</th>
+                      <th style={{ padding: '14px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Obrigação Fiscal</th>
+                      <th style={{ padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Competência</th>
+                      <th style={{ padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Vencimento</th>
+                      <th style={{ padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Valor da Guia</th>
+                      <th style={{ padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Status</th>
+                      <th style={{ padding: '14px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', textAlign: 'right', minWidth: 230, whiteSpace: 'nowrap' }}>Ações Rápidas</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -221,7 +221,7 @@ export default function TributosPage() {
                         onMouseEnter={e => (e.currentTarget.style.background = '#FAFAFA')}
                         onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
                       >
-                        <td style={{ padding: '16px 24px' }}>
+                        <td style={{ padding: '16px 24px', whiteSpace: 'nowrap' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                             <span style={{
                               fontFamily: "'Inter', sans-serif",
@@ -241,19 +241,19 @@ export default function TributosPage() {
                           </div>
                         </td>
 
-                        <td style={{ padding: '16px 14px', fontFamily: "'Inter', sans-serif", fontSize: 12, color: '#64748B' }}>
+                        <td style={{ padding: '16px 16px', fontFamily: "'Inter', sans-serif", fontSize: 12, color: '#64748B', whiteSpace: 'nowrap' }}>
                           {item.competencia}
                         </td>
 
-                        <td style={{ padding: '16px 14px', fontFamily: "'Michroma', sans-serif", fontSize: 11, color: '#374151' }}>
+                        <td style={{ padding: '16px 16px', fontFamily: "'Michroma', sans-serif", fontSize: 11, color: '#374151', whiteSpace: 'nowrap' }}>
                           {item.vencimento}
                         </td>
 
-                        <td style={{ padding: '16px 14px', fontFamily: "'Michroma', sans-serif", fontSize: 12.5, color: '#030303' }}>
+                        <td style={{ padding: '16px 16px', fontFamily: "'Michroma', sans-serif", fontSize: 12.5, color: '#030303', whiteSpace: 'nowrap' }}>
                           {item.valor}
                         </td>
 
-                        <td style={{ padding: '16px 14px' }}>
+                        <td style={{ padding: '16px 16px', whiteSpace: 'nowrap' }}>
                           <span style={{
                             display: 'inline-flex',
                             alignItems: 'center',
@@ -272,25 +272,29 @@ export default function TributosPage() {
                           </span>
                         </td>
 
-                        <td style={{ padding: '16px 24px', textAlign: 'right' }}>
-                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        {/* BOTÕES DE AÇÃO: LARGURA TRAVADA E NUNCA QUEBRAM TEXTO */}
+                        <td style={{ padding: '16px 24px', textAlign: 'right', whiteSpace: 'nowrap', minWidth: 230 }}>
+                          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'flex-end', gap: 8 }}>
                             {!item.paid && item.pix && (
                               <button
                                 onClick={() => copiarPix(item.id, item.pix)}
                                 style={{
-                                  display: 'flex',
+                                  display: 'inline-flex',
                                   alignItems: 'center',
                                   gap: 5,
                                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                                   fontWeight: 600,
                                   fontSize: 11.5,
+                                  height: 34,
                                   color: pixCopiadoId === item.id ? '#059669' : '#1D4ED8',
                                   background: pixCopiadoId === item.id ? '#ECFDF5' : '#EFF6FF',
-                                  border: 'none',
+                                  border: '1px solid rgba(29,78,216,0.15)',
                                   borderRadius: 8,
-                                  padding: '6px 12px',
+                                  padding: '0 12px',
                                   cursor: 'pointer',
-                                  transition: 'all 0.15s ease'
+                                  whiteSpace: 'nowrap',
+                                  transition: 'all 0.15s ease',
+                                  boxSizing: 'border-box'
                                 }}
                               >
                                 <Copy size={13} />
@@ -299,19 +303,23 @@ export default function TributosPage() {
                             )}
 
                             <button style={{
-                              display: 'flex',
+                              display: 'inline-flex',
                               alignItems: 'center',
                               gap: 5,
                               fontFamily: "'Plus Jakarta Sans', sans-serif",
                               fontWeight: 600,
                               fontSize: 11.5,
+                              height: 34,
                               color: item.paid ? '#030303' : '#FFFFFF',
-                              background: item.paid ? '#F8FAFC' : '#1D4ED8',
+                              background: item.paid ? '#FFFFFF' : '#1D4ED8',
                               border: item.paid ? '1px solid #E2E8F0' : 'none',
                               borderRadius: 8,
-                              padding: '6px 14px',
+                              padding: '0 14px',
                               cursor: 'pointer',
-                              boxShadow: item.paid ? 'none' : '0 2px 6px rgba(29,78,216,0.2)'
+                              boxShadow: item.paid ? 'none' : '0 2px 8px rgba(29,78,216,0.25)',
+                              whiteSpace: 'nowrap',
+                              transition: 'all 0.15s ease',
+                              boxSizing: 'border-box'
                             }}>
                               <Download size={13} />
                               <span>{item.paid ? "Comprovante" : "Baixar Guia PDF"}</span>

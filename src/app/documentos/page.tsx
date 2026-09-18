@@ -13,11 +13,7 @@ import {
   FileText, 
   FileCheck2, 
   BarChart3, 
-  Users, 
-  Search, 
-  ArrowUpRight,
-  Clock,
-  CheckCircle2
+  Users
 } from "lucide-react";
 
 const PASTAS = [
@@ -110,17 +106,15 @@ export default function DocumentosPage() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', width: '100%', background: '#F5F7FB' }}>
-      {/* 1. Sidebar Ativa em 'documentos' */}
       <Sidebar activeTab="documentos" />
 
-      {/* 2. Área Principal */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
         <Topbar title="Cofre de Documentos & GED" subtitle="Armazenamento seguro em nuvem com conformidade LGPD e ICP-Brasil" />
 
-        <main style={{ flex: 1, padding: '28px 36px', overflowY: 'auto' }}>
-          <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <main style={{ flex: 1, padding: '36px 40px', overflowY: 'auto', boxSizing: 'border-box' }}>
+          <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 28 }}>
 
-            {/* Banner Padronizado Certificado */}
+            {/* 1. Banner Padronizado Certificado */}
             <BannerAlerta
               titulo="Certificado Digital e-CNPJ A1"
               badge="Expira em 18 dias"
@@ -128,23 +122,27 @@ export default function DocumentosPage() {
               botaoSecundarioTexto="Renovação com Desconto"
               botaoTexto="Upload Novo Certificado (.pfx)"
             />
-            
 
-            {/* 4 PASTAS CONTÁBEIS */}
+            {/* 2. As 4 Pastas Organizacionais com Grid Perfeito */}
             <div>
-              <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 15, color: '#030303', marginBottom: 12 }}>
+              <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 15, color: '#030303', marginBottom: 14 }}>
                 Pastas Organizacionais do Escritório
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', 
+                gap: 16 
+              }}>
                 {PASTAS.map(p => (
                   <div key={p.id} style={{
                     background: '#FFFFFF',
                     border: '1px solid #E2E8F0',
                     borderRadius: 16,
-                    padding: '20px',
+                    padding: '22px 20px',
                     cursor: 'pointer',
                     boxShadow: '0 4px 16px rgba(3,3,3,0.04)',
-                    transition: 'transform 0.15s, border-color 0.15s'
+                    transition: 'all 0.15s ease',
+                    boxSizing: 'border-box'
                   }}
                   onMouseEnter={e => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
@@ -155,16 +153,16 @@ export default function DocumentosPage() {
                     e.currentTarget.style.borderColor = '#E2E8F0';
                   }}
                   >
-                    <div style={{ width: 38, height: 38, borderRadius: 10, background: p.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+                    <div style={{ width: 40, height: 40, borderRadius: 10, background: p.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
                       {p.icon}
                     </div>
-                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 13.5, color: '#030303' }}>
+                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14, color: '#030303' }}>
                       {p.titulo}
                     </div>
                     <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, color: '#64748B', marginTop: 4 }}>
                       {p.qtd}
                     </div>
-                    <div style={{ borderTop: '1px solid #F1F5F9', marginTop: 12, paddingTop: 10, fontSize: 10.5, color: '#94A3B8', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <div style={{ borderTop: '1px solid #F1F5F9', marginTop: 14, paddingTop: 10, fontSize: 11, color: '#94A3B8', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       Último: {p.ultimo}
                     </div>
                   </div>
@@ -172,7 +170,7 @@ export default function DocumentosPage() {
               </div>
             </div>
 
-            {/* ÁREA DE DRAG & DROP PARA UPLOAD */}
+            {/* 3. Área de Drag & Drop para Upload */}
             <div
               onDragOver={e => { e.preventDefault(); setDragging(true); }}
               onDragLeave={() => setDragging(false)}
@@ -181,47 +179,56 @@ export default function DocumentosPage() {
                 background: dragging ? 'rgba(29,78,216,0.04)' : '#FFFFFF',
                 border: dragging ? '2px dashed #1D4ED8' : '2px dashed #CBD5E1',
                 borderRadius: 16,
-                padding: '32px 20px',
+                padding: '36px 20px',
                 textAlign: 'center',
                 cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                transition: 'all 0.15s ease',
+                boxShadow: '0 4px 16px rgba(3,3,3,0.02)'
               }}
             >
               <div style={{ width: 48, height: 48, borderRadius: 12, background: '#EFF6FF', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px auto' }}>
                 <UploadCloud size={24} color="#1D4ED8" />
               </div>
-              <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14, color: '#030303' }}>
+              <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14.5, color: '#030303' }}>
                 Arraste seus extratos bancários, recibos ou contratos aqui
               </div>
               <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, color: '#64748B', marginTop: 4 }}>
                 Suporta arquivos OFX, PDF, XML e ZIP de até 50MB
               </div>
               <button style={{
-                marginTop: 14,
+                marginTop: 16,
                 fontFamily: "'Plus Jakarta Sans', sans-serif",
                 fontWeight: 600,
                 fontSize: 12,
                 color: '#1D4ED8',
                 background: '#EFF6FF',
-                border: 'none',
+                border: '1px solid rgba(29,78,216,0.15)',
                 borderRadius: 8,
-                padding: '7px 16px',
+                padding: '8px 18px',
                 cursor: 'pointer'
               }}>
                 Selecionar arquivos do computador
               </button>
             </div>
 
-            {/* TABELA DE ARQUIVOS RECENTES */}
+            {/* 4. Tabela de Arquivos Recentes */}
             <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: 0, overflow: 'hidden', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
               
               {/* Header com Filtros */}
-              <div style={{ padding: '20px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #F1F5F9' }}>
+              <div style={{ 
+                padding: '20px 24px', 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                alignItems: 'center', 
+                justifyContent: 'space-between', 
+                gap: 12,
+                borderBottom: '1px solid #F1F5F9' 
+              }}>
                 <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 15, color: '#030303' }}>
                   Arquivos Recentes no Cofre
                 </div>
 
-                <div style={{ display: 'flex', gap: 6 }}>
+                <div style={{ display: 'flex', gap: 6, overflowX: 'auto', maxWidth: '100%' }}>
                   {[
                     { id: "todos", label: "Todos os Arquivos" },
                     { id: "cliente", label: "Enviados por Mim" },
@@ -238,8 +245,10 @@ export default function DocumentosPage() {
                         background: filtroAutor === tab.id ? '#EFF6FF' : 'transparent',
                         border: 'none',
                         borderRadius: 8,
-                        padding: '6px 12px',
-                        cursor: 'pointer'
+                        padding: '7px 14px',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0
                       }}
                     >
                       {tab.label}
@@ -248,17 +257,17 @@ export default function DocumentosPage() {
                 </div>
               </div>
 
-              {/* Tabela */}
-              <div style={{ width: '100%', overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+              {/* Tabela com Rolagem Suave */}
+              <div style={{ width: '100%', maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                <table style={{ width: '100%', minWidth: 650, borderCollapse: 'collapse', textAlign: 'left' }}>
                   <thead>
                     <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #F1F5F9' }}>
-                      <th style={{ padding: '12px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Nome do Documento</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Pasta</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Enviado Por</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Data</th>
-                      <th style={{ padding: '12px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Tamanho</th>
-                      <th style={{ padding: '12px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', textAlign: 'right' }}>Ações</th>
+                      <th style={{ padding: '14px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Nome do Documento</th>
+                      <th style={{ padding: '14px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Pasta</th>
+                      <th style={{ padding: '14px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Enviado Por</th>
+                      <th style={{ padding: '14px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Data</th>
+                      <th style={{ padding: '14px 14px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase' }}>Tamanho</th>
+                      <th style={{ padding: '14px 24px', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: 11, color: '#94A3B8', textTransform: 'uppercase', textAlign: 'right' }}>Ações</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -314,8 +323,8 @@ export default function DocumentosPage() {
                             <button
                               title="Visualizar"
                               style={{
-                                width: 30,
-                                height: 30,
+                                width: 32,
+                                height: 32,
                                 borderRadius: 8,
                                 border: '1px solid #E2E8F0',
                                 background: '#FFFFFF',
@@ -330,8 +339,8 @@ export default function DocumentosPage() {
                             <button
                               title="Baixar Arquivo"
                               style={{
-                                width: 30,
-                                height: 30,
+                                width: 32,
+                                height: 32,
                                 borderRadius: 8,
                                 border: '1px solid rgba(29,78,216,0.2)',
                                 background: '#EFF6FF',

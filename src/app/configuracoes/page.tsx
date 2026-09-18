@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
-import Topbar from "../components/Topbar";
 import { 
   Palette, 
   UploadCloud, 
@@ -10,10 +9,9 @@ import {
   ShieldCheck, 
   Check, 
   Sliders, 
-  Sparkles,
-  Phone,
-  Building,
-  CheckCircle2,
+  Sparkles, 
+  Building, 
+  CheckCircle2, 
   Save
 } from "lucide-react";
 
@@ -32,7 +30,6 @@ export default function ConfiguracoesWhiteLabelPage() {
   const [whatsapp, setWhatsapp] = useState("+55 (11) 98765-4321");
   const [salvo, setSalvo] = useState(false);
 
-  // Módulos ativos
   const [modulos, setModulos] = useState({
     certificado: true,
     tributos: true,
@@ -51,36 +48,51 @@ export default function ConfiguracoesWhiteLabelPage() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', width: '100%', background: '#F5F7FB' }}>
-      {/* 1. Sidebar Ativa em 'configuracoes' */}
       <Sidebar activeTab="configuracoes" />
 
-      {/* 2. Área Principal */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+        
+        {/* Cabeçalho Responsivo (Não espreme no Celular!) */}
         <header style={{
-          height: 76,
+          height: 74,
           background: '#FFFFFF',
           borderBottom: '1px solid #E2E8F0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '0 36px',
+          padding: '0 24px',
           boxSizing: 'border-box',
-          fontFamily: "'Plus Jakarta Sans', sans-serif"
-        }}>
-          <div>
-            <div style={{ fontSize: 17, fontWeight: 800, color: '#030303', letterSpacing: '-0.02em' }}>
-              Personalização White-label & Marca
-            </div>
-            <div style={{ fontSize: 11.5, color: '#64748B', marginTop: 2 }}>
-              Configure o logotipo, paleta de cores e canais oficiais que seus clientes visualizarão
-            </div>
+          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          flexShrink: 0
+        }}
+        className="sm:!px-8 lg:!px-10"
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', minWidth: 0, paddingRight: 12 }}>
+            <h2 style={{ 
+              fontSize: 16, 
+              fontWeight: 800, 
+              color: '#030303', 
+              letterSpacing: '-0.02em', 
+              margin: 0, 
+              lineHeight: 1.2,
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}
+            className="sm:!text-lg"
+            >
+              Personalização White-label
+            </h2>
+            <p className="hidden md:block" style={{ fontSize: 11.5, color: '#64748B', margin: '3px 0 0 0', fontWeight: 500, whiteSpace: 'nowrap' }}>
+              Configure a marca, paleta de cores e módulos para seus clientes
+            </p>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
             {salvo && (
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#059669', background: '#ECFDF5', padding: '6px 14px', borderRadius: 999, display: 'flex', alignItems: 'center', gap: 5 }}>
-                <CheckCircle2 size={14} />
-                <span>Salvo com sucesso!</span>
+              <span className="hidden sm:flex" style={{ fontSize: 11.5, fontWeight: 700, color: '#059669', background: '#ECFDF5', padding: '5px 12px', borderRadius: 999, alignItems: 'center', gap: 5 }}>
+                <CheckCircle2 size={13} />
+                <span>Salvo!</span>
               </span>
             )}
             <button
@@ -93,32 +105,35 @@ export default function ConfiguracoesWhiteLabelPage() {
                 color: '#FFFFFF',
                 border: 'none',
                 borderRadius: 10,
-                padding: '9px 18px',
+                padding: '8px 14px',
                 fontSize: 12,
                 fontWeight: 700,
                 cursor: 'pointer',
                 boxShadow: `0 2px 10px ${corPrimaria}40`,
                 transition: 'all 0.15s ease'
               }}
+              className="sm:!px-4 sm:!py-2"
             >
               <Save size={14} />
-              <span>Salvar Alterações</span>
+              <span className="hidden sm:inline">Salvar Alterações</span>
+              <span className="sm:hidden">Salvar</span>
             </button>
           </div>
         </header>
 
-        <main style={{ flex: 1, padding: '28px 36px', overflowY: 'auto' }}>
-          <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
+        {/* Área Principal com Respiro Generoso de 32px */}
+        <main style={{ flex: 1, padding: '32px 24px', overflowY: 'auto', boxSizing: 'border-box' }} className="sm:!p-8 lg:!p-10">
+          <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 32 }}>
 
-            {/* GRID SUPERIOR: CONFIGURAÇÕES DE MARCA VS LIVE PREVIEW */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 24, alignItems: 'flex-start' }}>
+            {/* SEÇÃO PRINCIPAL (2 COLUNAS NO PC / EMPILHADO NO CELULAR) */}
+            <div className="whitelabel-layout">
               
-              {/* COLUNA ESQUERDA: FORMULÁRIO DE MARCA */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              {/* COLUNA ESQUERDA: FORMULÁRIOS DE MARCA */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                 
-                {/* Card 1: Logo & Nome */}
-                <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '22px 24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
-                  <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14.5, color: '#030303', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+                {/* 1. Identidade do Escritório */}
+                <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+                  <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 15, color: '#030303', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 8 }}>
                     <Building size={16} color={corPrimaria} />
                     <span>Identidade do Escritório</span>
                   </div>
@@ -133,7 +148,9 @@ export default function ConfiguracoesWhiteLabelPage() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      background: '#F8FAFC'
+                      background: '#F8FAFC',
+                      flexWrap: 'wrap',
+                      gap: 10
                     }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                         <div style={{ width: 40, height: 40, borderRadius: 10, background: '#FFFFFF', border: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -151,7 +168,7 @@ export default function ConfiguracoesWhiteLabelPage() {
                         background: '#FFFFFF',
                         border: '1px solid #E2E8F0',
                         borderRadius: 8,
-                        padding: '6px 12px',
+                        padding: '6px 14px',
                         cursor: 'pointer'
                       }}>
                         Substituir Logo
@@ -159,8 +176,8 @@ export default function ConfiguracoesWhiteLabelPage() {
                     </div>
                   </div>
 
-                  {/* Inputs Nome, CRC, WhatsApp */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  {/* Campos */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                     <div>
                       <label style={{ fontSize: 12, fontWeight: 600, color: '#374151', display: 'block', marginBottom: 6 }}>Nome de Exibição do Escritório</label>
                       <input
@@ -172,8 +189,8 @@ export default function ConfiguracoesWhiteLabelPage() {
                           background: '#F8FAFC',
                           border: '1px solid #E2E8F0',
                           borderRadius: 10,
-                          padding: '9px 12px',
-                          fontSize: 12.5,
+                          padding: '10px 14px',
+                          fontSize: 13,
                           color: '#030303',
                           outline: 'none',
                           boxSizing: 'border-box'
@@ -181,7 +198,7 @@ export default function ConfiguracoesWhiteLabelPage() {
                       />
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
                       <div>
                         <label style={{ fontSize: 12, fontWeight: 600, color: '#374151', display: 'block', marginBottom: 6 }}>Registro CRC do Responsável</label>
                         <input
@@ -193,8 +210,8 @@ export default function ConfiguracoesWhiteLabelPage() {
                             background: '#F8FAFC',
                             border: '1px solid #E2E8F0',
                             borderRadius: 10,
-                            padding: '9px 12px',
-                            fontSize: 12.5,
+                            padding: '10px 14px',
+                            fontSize: 13,
                             color: '#030303',
                             outline: 'none',
                             boxSizing: 'border-box'
@@ -213,8 +230,8 @@ export default function ConfiguracoesWhiteLabelPage() {
                             background: '#F8FAFC',
                             border: '1px solid #E2E8F0',
                             borderRadius: 10,
-                            padding: '9px 12px',
-                            fontSize: 12.5,
+                            padding: '10px 14px',
+                            fontSize: 13,
                             color: '#030303',
                             outline: 'none',
                             boxSizing: 'border-box'
@@ -225,18 +242,18 @@ export default function ConfiguracoesWhiteLabelPage() {
                   </div>
                 </div>
 
-                {/* Card 2: Seletor de Cores Dinâmico */}
-                <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '22px 24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
-                  <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14.5, color: '#030303', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
+                {/* 2. Seletor de Cores da Marca */}
+                <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+                  <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 15, color: '#030303', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
                     <Palette size={16} color={corPrimaria} />
                     <span>Cor Primária da Plataforma (Branding)</span>
                   </div>
-                  <div style={{ fontSize: 12, color: '#64748B', marginBottom: 14 }}>
+                  <div style={{ fontSize: 12, color: '#64748B', marginBottom: 16 }}>
                     Essa cor será aplicada dinamicamente em todos os botões, realces, ícones ativos e badges dos seus clientes.
                   </div>
 
                   {/* Pílulas de Presets */}
-                  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
                     {COLOR_PRESETS.map(preset => (
                       <button
                         key={preset.id}
@@ -262,10 +279,10 @@ export default function ConfiguracoesWhiteLabelPage() {
                     ))}
                   </div>
 
-                  {/* Input Hex Manual */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  {/* Input Hex */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
                     <span style={{ fontSize: 12, fontWeight: 600, color: '#64748B' }}>Código HEX Customizado:</span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 8, padding: '4px 8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 8, padding: '4px 10px' }}>
                       <input
                         type="color"
                         value={corPrimaria}
@@ -279,11 +296,11 @@ export default function ConfiguracoesWhiteLabelPage() {
 
               </div>
 
-              {/* COLUNA DIREITA: LIVE PREVIEW EM TEMPO REAL */}
+              {/* COLUNA DIREITA: LIVE PREVIEW (LADO A LADO NO MACBOOK!) */}
               <div>
-                <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '22px 24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14.5, color: '#030303', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 15, color: '#030303', display: 'flex', alignItems: 'center', gap: 8 }}>
                       <Sparkles size={16} color={corPrimaria} />
                       <span>Pré-visualização em Tempo Real</span>
                     </div>
@@ -295,12 +312,12 @@ export default function ConfiguracoesWhiteLabelPage() {
                     Veja como a interface do seu cliente responde instantaneamente à sua paleta:
                   </div>
 
-                  {/* MINIATURA DA INTERFACE */}
+                  {/* Miniatura do Dashboard */}
                   <div style={{
                     background: '#F8FAFC',
                     border: '1px solid #CBD5E1',
                     borderRadius: 14,
-                    padding: 12,
+                    padding: 14,
                     boxShadow: 'inset 0 2px 6px rgba(0,0,0,0.03)'
                   }}>
                     {/* Mini Topbar */}
@@ -312,7 +329,7 @@ export default function ConfiguracoesWhiteLabelPage() {
                       alignItems: 'center',
                       justifyContent: 'space-between',
                       border: '1px solid #E2E8F0',
-                      marginBottom: 10
+                      marginBottom: 12
                     }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                         <span style={{ width: 6, height: 16, borderRadius: 999, background: corPrimaria }} />
@@ -330,7 +347,7 @@ export default function ConfiguracoesWhiteLabelPage() {
                       </div>
                     </div>
 
-                    {/* Mini Corpo */}
+                    {/* Mini Cards */}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
                       <div style={{ background: '#FFFFFF', padding: 10, borderRadius: 8, border: '1px solid #E2E8F0' }}>
                         <div style={{ fontSize: 9.5, color: '#64748B' }}>Tributos Pendentes</div>
@@ -379,7 +396,7 @@ export default function ConfiguracoesWhiteLabelPage() {
                     </div>
                   </div>
 
-                  <div style={{ fontSize: 11, color: '#94A3B8', marginTop: 12, textAlign: 'center' }}>
+                  <div style={{ fontSize: 11, color: '#94A3B8', marginTop: 14, textAlign: 'center', lineHeight: 1.4 }}>
                     Ao clicar em "Salvar Alterações", todas as contas vinculadas a este escritório atualizarão automaticamente.
                   </div>
                 </div>
@@ -387,15 +404,15 @@ export default function ConfiguracoesWhiteLabelPage() {
 
             </div>
 
-            {/* DOMÍNIO PERSONALIZADO (CUSTOM DOMAIN) */}
-            <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '22px 24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            {/* 3. Domínio Personalizado (CNAME) com Respiro Generoso */}
+            <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(2,132,199,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Globe size={22} color="#0284C7" />
                   </div>
                   <div>
-                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14.5, color: '#030303' }}>
+                    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 15, color: '#030303' }}>
                       Domínio Personalizado (CNAME)
                     </div>
                     <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, color: '#64748B', marginTop: 2 }}>
@@ -404,14 +421,14 @@ export default function ConfiguracoesWhiteLabelPage() {
                   </div>
                 </div>
 
-                <span style={{ display: 'flex', alignItems: 'center', gap: 5, background: '#ECFDF5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '4px 12px', borderRadius: 999 }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#ECFDF5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '4px 12px', borderRadius: 999 }}>
                   <ShieldCheck size={14} />
                   <span>SSL Ativo & Seguro</span>
                 </span>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 16, paddingTop: 16, borderTop: '1px solid #F1F5F9' }}>
-                <div style={{ flex: 1, background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 10, padding: '10px 14px', fontSize: 12.5, color: '#030303', fontFamily: "'Michroma', sans-serif" }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 16, paddingTop: 16, borderTop: '1px solid #F1F5F9', flexWrap: 'wrap' }}>
+                <div style={{ flex: '1 1 300px', background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 10, padding: '10px 14px', fontSize: 13, color: '#030303', fontFamily: "'Michroma', sans-serif" }}>
                   app.apicecontabilidade.com.br
                 </div>
                 <button style={{
@@ -422,7 +439,7 @@ export default function ConfiguracoesWhiteLabelPage() {
                   background: '#EFF6FF',
                   border: '1px solid rgba(29,78,216,0.15)',
                   borderRadius: 10,
-                  padding: '10px 16px',
+                  padding: '10px 18px',
                   cursor: 'pointer'
                 }}>
                   Testar DNS
@@ -430,17 +447,21 @@ export default function ConfiguracoesWhiteLabelPage() {
               </div>
             </div>
 
-            {/* MÓDULOS HABILITADOS PARA CLIENTES */}
-            <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '22px 24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
-              <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 14.5, color: '#030303', marginBottom: 4, display: 'flex', alignItems: 'center', gap: 8 }}>
+            {/* 4. Módulos Visíveis com Respiro Generoso */}
+            <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: 16, padding: '24px', boxShadow: '0 4px 16px rgba(3,3,3,0.04)' }}>
+              <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 15, color: '#030303', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <Sliders size={16} color={corPrimaria} />
                 <span>Módulos Visíveis para seus Clientes</span>
               </div>
-              <div style={{ fontSize: 12, color: '#64748B', marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: '#64748B', marginBottom: 18 }}>
                 Ative ou desative seções da plataforma de acordo com os serviços contratados por cada empresa cliente:
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }}>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
+                gap: 16 
+              }}>
                 {[
                   { key: "tributos", label: "Central de Tributos", desc: "Download de DAS, FGTS e PIX" },
                   { key: "certificado", label: "Monitor de Certificado", desc: "Avisos de expiração do e-CNPJ" },
@@ -453,7 +474,7 @@ export default function ConfiguracoesWhiteLabelPage() {
                       key={item.key}
                       onClick={() => alternarModulo(item.key as keyof typeof modulos)}
                       style={{
-                        padding: '14px',
+                        padding: '16px',
                         borderRadius: 12,
                         border: ativo ? `1.5px solid ${corPrimaria}` : '1px solid #E2E8F0',
                         background: ativo ? `${corPrimaria}06` : '#FFFFFF',
@@ -461,14 +482,15 @@ export default function ConfiguracoesWhiteLabelPage() {
                         transition: 'all 0.15s ease',
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'space-between'
+                        justifyContent: 'space-between',
+                        boxSizing: 'border-box'
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-                        <span style={{ fontSize: 12.5, fontWeight: 700, color: '#030303' }}>{item.label}</span>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: '#030303' }}>{item.label}</span>
                         <div style={{
-                          width: 32,
-                          height: 18,
+                          width: 34,
+                          height: 20,
                           borderRadius: 999,
                           background: ativo ? corPrimaria : '#CBD5E1',
                           padding: 2,
@@ -477,10 +499,10 @@ export default function ConfiguracoesWhiteLabelPage() {
                           justifyContent: ativo ? 'flex-end' : 'flex-start',
                           transition: 'background 0.2s'
                         }}>
-                          <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#FFFFFF' }} />
+                          <div style={{ width: 16, height: 16, borderRadius: '50%', background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,0,0,0.15)' }} />
                         </div>
                       </div>
-                      <div style={{ fontSize: 11, color: '#64748B' }}>{item.desc}</div>
+                      <div style={{ fontSize: 11.5, color: '#64748B', lineHeight: 1.4 }}>{item.desc}</div>
                     </div>
                   );
                 })}
