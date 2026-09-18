@@ -707,16 +707,37 @@ function ContadorCard() {
             <GoogleMeetIcon />
             Meet
           </button>
-          <button style={{
-            flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-            fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600, fontSize: 12,
-            color: '#fff', background: '#25D366',
-            border: 'none', borderRadius: 9,
-            padding: '8px 10px', cursor: 'pointer',
-          }}>
-            <WhatsAppSmallIcon />
-            WhatsApp
-          </button>
+          {/* Botão Oficial do WhatsApp com seu link e ícone integrado */}
+          <a
+            href="https://wa.me/5521993253591?text=Ol%C3%A1%20Sheila!%20Acessei%20a%20demonstra%C3%A7%C3%A3o%20do%20HubCont%C3%A1bil%20e%20gostaria%20de%20conversar%20sobre%20a%20plataforma."
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 6,
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontWeight: 600,
+              fontSize: 12,
+              color: '#fff',
+              background: '#25D366',
+              border: 'none',
+              borderRadius: 9,
+              padding: '8px 10px',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              transition: 'opacity 0.15s ease'
+            }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')}
+            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#FFFFFF" style={{ flexShrink: 0 }}>
+              <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.979-.276-.1-.477-.15-.678.15-.2.301-.778.979-.954 1.18-.176.2-.351.226-.652.075-.301-.15-1.27-.468-2.42-1.493-.895-.798-1.5-1.784-1.676-2.085-.176-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.176.201-.301.301-.502.101-.201.05-.377-.025-.527-.075-.15-.678-1.634-.929-2.238-.244-.588-.492-.508-.678-.518l-.578-.01c-.2 0-.527.075-.803.376s-1.054 1.029-1.054 2.509 1.079 2.91 1.23 3.111c.15.201 2.124 3.243 5.145 4.549 3.021 1.306 3.021.871 3.573.821.552-.05 1.782-.728 2.033-1.431.251-.703.251-1.305.176-1.431-.076-.126-.277-.201-.578-.351zM12 2a10 10 0 00-8.584 15.112L2 22l4.988-1.309A10 10 0 1012 2zm0 18.25a8.214 8.214 0 01-4.19-1.149l-.3-.178-3.113.816.83-3.033-.195-.311A8.25 8.25 0 1112 20.25z" />
+            </svg>
+            <span>WhatsApp</span>
+          </a>
         </div>
       </div>
     </div>
@@ -730,15 +751,15 @@ export default function Dashboard() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', width: '100%', background: '#F5F7FB' }}>
-      {/* 1. Sidebar Fixa na Esquerda */}
+      {/* 1. Sidebar Inteligente */}
       <Sidebar activeTab="dashboard" />
 
       {/* 2. Área de Conteúdo */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
         <Topbar title="Dashboard Geral" subtitle="Competência: Setembro / 2024" />
 
-        <main style={{ flex: 1, padding: '28px 36px', overflowY: 'auto' }}>
-          <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <main style={{ flex: 1, padding: '24px 20px', overflowY: 'auto' }}>
+          <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 20 }}>
             
             {/* Banner Preventivo */}
             {bannerVisible && (
@@ -750,6 +771,7 @@ export default function Dashboard() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                flexWrap: 'wrap',
                 gap: 16,
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
@@ -767,7 +789,7 @@ export default function Dashboard() {
                       <span style={{ fontFamily: "'Michroma', sans-serif", fontSize: 13, color: '#0E7490' }}>18 dias!</span>
                     </div>
                     <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, color: '#64748B', marginTop: 2 }}>
-                      Evite bloqueio na emissão de NF-e. Renove online em 5 minutos com desconto parceiro.
+                      Evite bloqueio na emissão de NF-e. Renove online em 5 minutos.
                     </div>
                   </div>
                 </div>
@@ -794,24 +816,24 @@ export default function Dashboard() {
               </div>
             )}
 
-            {/* Linha de KPIs (4 Cards Compactos) */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+                        {/* LINHA DE KPIS COM ESPAÇAMENTO PERFEITO */}
+            <div className="kpi-grid">
               <KPITributos />
               <KPIVencimento />
               <KPICertificado />
               <KPINotas />
             </div>
 
-            {/* Grid Principal */}
-            <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
+            {/* GRID PRINCIPAL */}
+            <div className="dashboard-layout">
               {/* Coluna Esquerda */}
-              <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 24 }}>
+              <div className="dashboard-main-col">
                 <ObrigacoesCard />
                 <AcoesRapidasCard />
               </div>
 
               {/* Coluna Direita */}
-              <div style={{ width: 340, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 20 }}>
+              <div className="dashboard-side-col">
                 <CalendarioCard />
                 <FaturaCard />
                 <ContadorCard />
