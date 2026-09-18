@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
 import BannerAlerta from './components/BannerAlerta'
+import Footer from './components/Footer'
+
 
 // ─── Ícones SVG Rápidos ───────────────────────────────────────────────────────
 
@@ -805,9 +807,16 @@ export default function Dashboard() {
               <ContadorCard />
             </div>
           </div>
-
+          
         </main>
-      </div>
+
+       {/* Container Principal */}
+      <main className="hub-main-content" style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+        {/* ... todo o conteúdo da página ... */}
+          </main>
+        {/* RODAPÉ OFICIAL AQUI */}
+      <Footer />
     </div>
-  )
+  </div>
+)
 }
