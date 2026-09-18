@@ -741,18 +741,28 @@ function ContadorCard() {
 
 export default function Dashboard() {
   const [bannerVisible, setBannerVisible] = useState(true)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', width: '100%', background: '#F5F7FB', overflowX: 'hidden' }}>
-      {/* 1. Sidebar Inteligente */}
-      <Sidebar activeTab="dashboard" />
+    <div style={{ display: 'flex', minHeight: '100vh', width: '100%', backgroundColor: '#F5F7FB', overflowX: 'hidden' }}>
+      {/* 1. Sidebar Controlada (Sólida e sem sobreposição transparente) */}
+      <Sidebar 
+        activeTab="dashboard" 
+        mobileOpen={mobileMenuOpen} 
+        onCloseMobile={() => setMobileMenuOpen(false)} 
+      />
 
       {/* 2. Área de Conteúdo */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, overflowX: 'hidden' }}>
-        <Topbar title="Dashboard Geral" subtitle="Competência: Setembro / 2024" />
+        {/* Topbar com os risquinhos hambúrguer */}
+        <Topbar 
+          title="Dashboard Geral" 
+          subtitle="Competência: Setembro / 2024" 
+          onOpenMenu={() => setMobileMenuOpen(true)}
+        />
 
-        {/* Container Responsivo Fluido */}
-        <main className="hub-main-content">
+        {/* Container Principal com Respiros Generosos */}
+        <main className="hub-main-content" style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
           
           {/* Banner Preventivo Padronizado */}
           {bannerVisible && (
@@ -772,7 +782,7 @@ export default function Dashboard() {
             />
           )}
 
-          {/* 4 CARDS LADO A LADO NO DESKTOP / 2 NO TABLET / 1 NO CELULAR COM RESPIRO */}
+          {/* 4 CARDS LADO A LADO COM RESPIRO PERFEITO */}
           <div className="hub-kpi-grid">
             <KPITributos />
             <KPIVencimento />
@@ -780,16 +790,16 @@ export default function Dashboard() {
             <KPINotas />
           </div>
 
-          {/* GRID PRINCIPAL: LADO A LADO NO DESKTOP / EMPILHADO NO MOBILE */}
-          <div className="hub-split-grid">
-            {/* Coluna Esquerda (Tabela + Ações) */}
-            <div className="hub-col-main">
+          {/* GRID PRINCIPAL BEM SEPARADO */}
+          <div className="hub-split-grid" style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
+            {/* Coluna Esquerda (Tabela de Guias + Ações Rápidas) */}
+            <div className="hub-col-main" style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
               <ObrigacoesCard />
               <AcoesRapidasCard />
             </div>
 
             {/* Coluna Direita (Rotinas + Fatura + Contador) */}
-            <div className="hub-col-side">
+            <div className="hub-col-side" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
               <CalendarioCard />
               <FaturaCard />
               <ContadorCard />

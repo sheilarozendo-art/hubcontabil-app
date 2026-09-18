@@ -112,3 +112,31 @@
   background: #CBD5E1;
   border-radius: 999px;
 }
+
+/* ─── GARANTIA TOTAL DA SIDEBAR NO COMPUTADOR VS CELULAR ─── */
+
+/* No Computador (> 1024px): Sidebar SEMPRE visível, Risquinhos SEMPRE ocultos */
+@media (min-width: 1025px) {
+  .sidebar-desktop {
+    display: flex !important;
+  }
+  .btn-menu-hamburguer {
+    display: none !important;
+  }
+  .logo-mobile-topbar {
+    display: none !important;
+  }
+}
+
+/* No Celular e Tablet (<= 1024px): Sidebar fixa OCULTA, Risquinhos VISÍVEIS */
+@media (max-width: 1024px) {
+  .sidebar-desktop {
+    display: none !important;
+  }
+  .btn-menu-hamburguer {
+    display: flex !important;
+  }
+  .logo-mobile-topbar {
+    display: block !important;
+  }
+}

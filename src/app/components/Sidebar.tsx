@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
+import Logo from "./Logo";
 import { 
   LayoutDashboard, 
   Receipt, 
@@ -11,13 +12,20 @@ import {
   MessageSquare, 
   ArrowUpRight, 
   Settings,
-  Menu,
   X
 } from "lucide-react";
 
-export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: string }) {
-  const [mobileOpen, setMobileOpen] = useState(false);
+interface SidebarProps {
+  activeTab?: string;
+  mobileOpen?: boolean;
+  onCloseMobile?: () => void;
+}
 
+export default function Sidebar({ 
+  activeTab = "dashboard", 
+  mobileOpen = false, 
+  onCloseMobile 
+}: SidebarProps) {
   const menuItems = [
     { id: "dashboard", href: "/", icon: <LayoutDashboard size={16} />, label: "Dashboard" },
     { id: "tributos", href: "/tributos", icon: <Receipt size={16} />, label: "Tributos & Guias", badge: "1 a vencer" },
@@ -27,32 +35,36 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
   ];
 
   const menuContent = (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', padding: '24px 20px', boxSizing: 'border-box' }}>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      height: '100%',
+      padding: '24px 20px',
+      boxSizing: 'border-box',
+      backgroundColor: '#FFFFFF', // 100% BRANCO SÓLIDO (NADA TRANSPARENTE)
+    }}>
       <div>
-        {/* Logo HubContábil Oficial */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-end', gap: 5, height: 32 }}>
-                <span style={{ width: 9, height: 32, background: '#1D4ED8', borderRadius: 999 }} />
-                <span style={{ width: 9, height: 24, background: '#A155FF', borderRadius: 999 }} />
-                <span style={{ width: 9, height: 16, background: '#43C1EF', borderRadius: 999 }} />
-              </div>
-              <div>
-                <div style={{ fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em', color: '#030303', lineHeight: 1 }}>HUBCONTÁBIL</div>
-                <div style={{ fontSize: 9, letterSpacing: '0.22em', color: '#64748B', fontWeight: 700, marginTop: 3 }}>FINANCIAL</div>
-              </div>
-            </div>
-          </Link>
-
-          {/* Botão X para fechar gaveta no mobile */}
+        {/* LOGO OFICIAL HUBCONTÁBIL NO TOPO DA SIDEBAR */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+          <Logo tamanho="md" comTexto={true} />
+          {/* Botão fechar (X) apenas na gaveta do celular */}
           {mobileOpen && (
             <button 
-              onClick={() => setMobileOpen(false)}
-              className="lg:hidden"
-              style={{ background: '#F1F5F9', border: 'none', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+              onClick={onCloseMobile}
+              style={{
+                background: '#F1F5F9',
+                border: 'none',
+                borderRadius: '50%',
+                width: 32,
+                height: 32,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer'
+              }}
             >
-              <X size={18} color="#64748B" />
+              <X size={16} color="#64748B" />
             </button>
           )}
         </div>
@@ -61,7 +73,7 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
         <div style={{
           marginTop: 12,
           padding: '12px 14px',
-          background: '#F8FAFC',
+          backgroundColor: '#F8FAFC',
           border: '1px solid #E2E8F0',
           borderRadius: 14,
           display: 'flex',
@@ -80,28 +92,28 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
           <ChevronDown size={14} color="#64748B" />
         </div>
 
-        {/* Links de Navegação */}
-        <nav style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 4 }}>
+        {/* Itens do Menu */}
+        <nav style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 6 }}>
           {menuItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <Link
                 key={item.id}
                 href={item.href}
-                onClick={() => setMobileOpen(false)}
+                onClick={onCloseMobile}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '10px 14px',
+                  padding: '11px 14px',
                   borderRadius: 12,
-                  background: isActive ? '#EFF6FF' : 'transparent',
+                  backgroundColor: isActive ? '#EFF6FF' : 'transparent',
                   color: isActive ? '#1D4ED8' : '#64748B',
                   fontWeight: isActive ? 700 : 600,
                   fontSize: 12.5,
                   textDecoration: 'none',
                   cursor: 'pointer',
-                  transition: 'background 0.15s ease'
+                  transition: 'all 0.15s ease'
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -110,13 +122,13 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
                 </div>
 
                 {item.badge && (
-                  <span style={{ background: '#FEF3C7', color: '#D97706', fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 999 }}>
+                  <span style={{ backgroundColor: '#FEF3C7', color: '#D97706', fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 999 }}>
                     {item.badge}
                   </span>
                 )}
 
                 {isActive && (
-                  <span style={{ width: 5, height: 16, background: '#1D4ED8', borderRadius: 999 }} />
+                  <span style={{ width: 5, height: 16, backgroundColor: '#1D4ED8', borderRadius: 999 }} />
                 )}
               </Link>
             );
@@ -138,7 +150,7 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
               <MessageSquare size={14} />
               <span>Contador Dedicado</span>
             </div>
-            <span style={{ fontSize: 9, background: '#FFFFFF', border: '1px solid #E2E8F0', padding: '2px 6px', borderRadius: 6, color: '#059669', fontWeight: 700 }}>
+            <span style={{ fontSize: 9, backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', padding: '2px 6px', borderRadius: 6, color: '#059669', fontWeight: 700 }}>
               Online
             </span>
           </div>
@@ -146,13 +158,13 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
             Resposta média em até 15 min.
           </div>
           <a
-            href="https://wa.me/55SEUDDDSEUNUMERO?text=Ol%C3%A1%20Sheila!%20Acessei%20o%20HubCont%C3%A1bil%20e%20gostaria%20de%20conversar."
+            href="https://wa.me/5521993253591?text=Ol%C3%A1%20Sheila!%20Acessei%20o%20HubCont%C3%A1bil%20e%20gostaria%20de%20conversar."
             target="_blank"
             rel="noopener noreferrer"
             style={{
               width: '100%',
               marginTop: 10,
-              background: '#1D4ED8',
+              backgroundColor: '#1D4ED8',
               color: '#FFFFFF',
               border: 'none',
               borderRadius: 10,
@@ -202,30 +214,19 @@ export default function Sidebar({ activeTab = "dashboard" }: { activeTab?: strin
 
   return (
     <>
-      {/* Botão Hambúrguer flutuante (Só visível no celular/tablet) */}
-      <button
-        onClick={() => setMobileOpen(true)}
-        className="flex lg:hidden fixed bottom-5 right-5 z-50 bg-[#1D4ED8] text-white border-none rounded-full w-13 h-13 shadow-xl cursor-pointer items-center justify-center"
-        aria-label="Abrir Menu"
-      >
-        <Menu size={24} />
-      </button>
-
-      {/* Barra Lateral Fixa do Desktop (FICA OCULTA NO CELULAR E SÓ APARECE NO COMPUTADOR!) */}
-      <aside 
-        className="hidden lg:flex flex-col justify-between w-[270px] min-w-[270px] bg-white border-r border-[#E2E8F0] min-h-screen shrink-0"
-      >
+      {/* 1. Barra Lateral Fixa do Computador (Fundo 100% Branco) */}
+      <aside className="sidebar-desktop flex-col justify-between w-[270px] min-w-[270px] bg-white border-r border-[#E2E8F0] min-h-screen shrink-0">
         {menuContent}
       </aside>
 
-      {/* Gaveta Deslizante no Mobile */}
+      {/* 2. Gaveta Deslizante no Mobile (Com fundo escuro e gaveta branca sólida) */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 flex lg:hidden">
           <div 
-            onClick={() => setMobileOpen(false)}
-            className="fixed inset-0 bg-black/50 backdrop-blur-xs"
+            onClick={onCloseMobile}
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
           />
-          <div className="relative w-[280px] max-w-[85%] bg-white h-full shadow-2xl z-10 flex flex-col justify-between">
+          <div className="relative w-[285px] max-w-[85%] bg-white h-full shadow-2xl z-10 flex flex-col justify-between">
             {menuContent}
           </div>
         </div>
