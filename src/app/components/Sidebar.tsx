@@ -3,15 +3,17 @@
 import React from "react";
 import Link from "next/link";
 import Logo from "./Logo";
-import { 
-  LayoutDashboard, 
-  Receipt, 
-  FolderArchive, 
-  Headset, 
-  ChevronDown, 
-  MessageSquare, 
-  ArrowUpRight, 
+import {
+  LayoutDashboard,
+  Receipt,
+  FolderArchive,
+  Headset,
+  ChevronDown,
+  MessageSquare,
+  ArrowUpRight,
   Settings,
+  FileText,
+  Users,
   X
 } from "lucide-react";
 
@@ -27,11 +29,13 @@ export default function Sidebar({
   onCloseMobile 
 }: SidebarProps) {
   const menuItems = [
-    { id: "dashboard", href: "/", icon: <LayoutDashboard size={16} />, label: "Dashboard" },
-    { id: "tributos", href: "/tributos", icon: <Receipt size={16} />, label: "Tributos & Guias", badge: "1 a vencer" },
-    { id: "documentos", href: "/documentos", icon: <FolderArchive size={16} />, label: "Documentos & Cofre" },
-    { id: "solicitacoes", href: "/solicitacoes", icon: <Headset size={16} />, label: "Solicitações" },
-    { id: "configuracoes", href: "/configuracoes", icon: <Settings size={16} />, label: "Personalização White-label" },
+    { id: "dashboard",    href: "/",              icon: <LayoutDashboard size={16} />, label: "Dashboard" },
+    { id: "tributos",     href: "/tributos",      icon: <Receipt size={16} />,         label: "Guias & Tributos", badge: "1 a vencer" },
+    { id: "notas",        href: "/notas",         icon: <FileText size={16} />,        label: "Notas Fiscais" },
+    { id: "folha",        href: "/folha",         icon: <Users size={16} />,           label: "Folha de Pagamento" },
+    { id: "documentos",   href: "/documentos",    icon: <FolderArchive size={16} />,   label: "Documentos & Cofre" },
+    { id: "solicitacoes", href: "/solicitacoes",  icon: <Headset size={16} />,         label: "Solicitações" },
+    { id: "configuracoes",href: "/configuracoes", icon: <Settings size={16} />,        label: "Configurações" },
   ];
 
   const menuContent = (
