@@ -277,10 +277,10 @@ function Sidebar({ active, mobileOpen, onClose }: { active: string; mobileOpen: 
             }}>JS</div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600, fontSize: 13, color: '#030303', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                João da Silva
+                Sheila Rozendo
               </div>
               <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11, color: '#94A3B8' }}>
-                Sócio-Administrador
+                Sócia-Administradora
               </div>
             </div>
           </div>
@@ -457,7 +457,7 @@ function Topbar({ onOpenMenu, title = 'Dashboard Geral', subtitle = 'Competênci
             {I.bell}
             <span className="topbar-bell-dot" />
           </button>
-          <div className="topbar-avatar" role="button" aria-label="Perfil de João da Silva">JS</div>
+          <div className="topbar-avatar" role="button" aria-label="Perfil de Sheila Rozendo">JS</div>
         </div>
       </header>
     </>
@@ -1016,7 +1016,7 @@ function ContadorCard() {
           <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'linear-gradient(135deg, #1D4ED8, #A155FF)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 14, color: '#fff', flexShrink: 0 }}>CE</div>
           <div>
             <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 13.5, color: '#030303' }}>Sheei Digital</div>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11.5, color: '#64748B' }}>CRC-SP · Contador Responsável</div>
+            <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11.5, color: '#64748B' }}>CRC-SP · Contadora Responsável</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 4 }}>
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#22C55E' }} />
               <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11, fontWeight: 600, color: '#15803D' }}>Online agora</span>
