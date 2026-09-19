@@ -74,23 +74,25 @@ const I = {
       <path d="M4.5 7l2 2 3-3" stroke={c} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
-  shield: (
-    <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-      <path d="M10 2L3 5v5c0 4.1 3 7.7 7 8.9C14 18.7 17 15.1 17 11V5l-7-3z" fill="#43C1EF" fillOpacity="0.15" stroke="#43C1EF" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M7 10l2 2 4-4" stroke="#43C1EF" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  ),
 };
 
-// ─── Ícones da Navegação ───────────────────────────────────────────────────────
+// ─── Navegação do Next.js ──────────────────────────────────────────────────────
+
+const NAV = [
+  { id: "dashboard", href: "/", label: "Dashboard" },
+  { id: "guias", href: "/tributos", label: "Guias & Tributos" },
+  { id: "docs", href: "/documentos", label: "Documentos" },
+  { id: "solicitacoes", href: "/solicitacoes", label: "Solicitações" },
+  { id: "config", href: "/configuracoes", label: "Configurações" },
+];
 
 function NavIcon({ id }: { id: string }) {
   const paths: Record<string, React.ReactElement> = {
     dashboard: <><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="12" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="12" width="7" height="7" rx="1.5" /><rect x="12" y="12" width="7" height="7" rx="1.5" /></>,
-    tributos: <><path d="M4 2h10v14l-2-1.5-1.5 1.5L9 14.5 7.5 16 6 14.5 4 16V2z" /><path d="M7 7h4M7 10h2" strokeLinecap="round" /></>,
-    documentos: <><path d="M4 2h10l4 4v14a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2z" /><path d="M14 2v4h4" /></>,
+    guias: <><path d="M4 2h10v14l-2-1.5-1.5 1.5L9 14.5 7.5 16 6 14.5 4 16V2z" /><path d="M7 7h4M7 10h2" strokeLinecap="round" /></>,
+    docs: <><path d="M4 2h10l4 4v14a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2z" /><path d="M14 2v4h4" /></>,
     solicitacoes: <><circle cx="10" cy="7" r="3" /><path d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6" strokeLinecap="round" /></>,
-    configuracoes: <><circle cx="10" cy="10" r="3" /><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.9 4.9l1.4 1.4M13.7 13.7l1.4 1.4M4.9 15.1l1.4-1.4M13.7 6.3l1.4-1.4" strokeLinecap="round" /></>,
+    config: <><circle cx="10" cy="10" r="3" /><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.9 4.9l1.4 1.4M13.7 13.7l1.4 1.4M4.9 15.1l1.4-1.4M13.7 6.3l1.4-1.4" strokeLinecap="round" /></>,
   };
   return (
     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
@@ -99,15 +101,7 @@ function NavIcon({ id }: { id: string }) {
   );
 }
 
-const NAV = [
-  { id: "dashboard", href: "/", label: "Dashboard" },
-  { id: "tributos", href: "/tributos", label: "Tributos & Guias" },
-  { id: "documentos", href: "/documentos", label: "Documentos & Cofre" },
-  { id: "solicitacoes", href: "/solicitacoes", label: "Solicitações" },
-  { id: "configuracoes", href: "/configuracoes", label: "Personalização White-label" },
-];
-
-// ─── Sidebar Conectada ─────────────────────────────────────────────────────────
+// ─── Sidebar com Links Reais ───────────────────────────────────────────────────
 
 function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose: () => void }) {
   return (
@@ -131,6 +125,7 @@ function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose: () => 
         }}
         className={`sidebar-root${mobileOpen ? " open" : ""}`}
       >
+        {/* Header da Logo */}
         <div style={{ height: 64, display: "flex", alignItems: "center", padding: "0 20px", borderBottom: "1px solid #F1F5F9", flexShrink: 0 }}>
           <HubContabilLogo />
           <button onClick={onClose} className="sidebar-close-btn" style={{ marginLeft: "auto", background: "none", border: "none", cursor: "pointer", color: "#94A3B8", padding: 4 }}>
@@ -138,7 +133,7 @@ function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose: () => 
           </button>
         </div>
 
-        {/* Empresa Ativa: Nexus Tech Studio */}
+        {/* Empresa Ativa */}
         <div style={{ padding: "14px 14px 0" }}>
           <div style={{
             width: "100%", display: "flex", alignItems: "center", gap: 10,
@@ -164,13 +159,13 @@ function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose: () => 
           </div>
         </div>
 
-        {/* Links Reais do Menu */}
+        {/* Menu de Navegação com Links do Next.js */}
         <nav style={{ flex: 1, padding: "8px 14px", overflowY: "auto" }}>
           <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 10, color: "#CBD5E1", letterSpacing: "0.1em", textTransform: "uppercase", padding: "14px 8px 6px" }}>
             Menu Principal
           </div>
           {NAV.map((item) => {
-            const isActive = item.id === "tributos";
+            const isActive = item.id === "guias";
             return (
               <Link
                 key={item.id}
@@ -196,7 +191,7 @@ function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose: () => 
           })}
         </nav>
 
-        {/* Perfil Oficial da Sheila */}
+        {/* Perfil com Logout */}
         <Link href="/login" style={{ textDecoration: "none" }}>
           <div style={{ padding: "12px 14px", borderTop: "1px solid #F1F5F9", flexShrink: 0, cursor: "pointer" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -268,15 +263,44 @@ function Topbar({ onOpenMenu }: { onOpenMenu: () => void }) {
         </div>
         <div className="topbar-title-block">
           <div className="topbar-title">Tributos & Guias Fiscais</div>
-          <div className="topbar-subtitle">Gestão centralizada de guias, apurações e comprovantes</div>
+          <div className="topbar-subtitle">Gestão de guias, apurações e comprovantes</div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <button style={{
+            position: 'relative', background: '#F8FAFC', border: '1px solid #E2E8F0',
+            borderRadius: 9, width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer'
+          }}>
+            {I.bell}
+            <span style={{ position: 'absolute', top: 7, right: 7, width: 7, height: 7, borderRadius: '50%', background: '#EF4444', border: '1.5px solid #FFFFFF' }} />
+          </button>
           <div style={{ width: 34, height: 34, borderRadius: "50%", background: "linear-gradient(135deg, #1D4ED8, #A155FF)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 12, color: "#fff" }}>
             SR
           </div>
         </div>
       </header>
     </>
+  );
+}
+
+// ─── Footer ────────────────────────────────────────────────────────────────────
+
+function Footer() {
+  const year = new Date().getFullYear();
+  return (
+    <footer style={{ background: "#FFFFFF", borderTop: "1px solid #E2E8F0", width: "100%", padding: "20px 28px", boxSizing: "border-box" }}>
+      <div style={{ maxWidth: 1360, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <HubContabilLogo collapsed={true} />
+          <span style={{ fontSize: 12, color: "#64748B", fontWeight: 500 }}>
+            © {year} <strong>HubContábil Financial</strong>. Todos os direitos reservados.
+          </span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#F0FDF4", border: "1px solid #BBF7D0", padding: "4px 10px", borderRadius: 999 }}>
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22C55E" }} />
+          <span style={{ fontSize: 11, fontWeight: 700, color: "#15803D" }}>Sistemas Operacionais • v2.4.0</span>
+        </div>
+      </div>
+    </footer>
   );
 }
 
@@ -543,6 +567,7 @@ export default function TributosPage() {
 
             </div>
           </main>
+          <Footer />
         </div>
       </div>
     </>
