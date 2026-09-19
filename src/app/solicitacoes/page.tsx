@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import type { CSSProperties } from "react"
+
 
 
 // ─── Solicitações page (route: /solicitacoes) ─────────────────────────────────
@@ -238,8 +238,7 @@ export default function SolicitacoesPage() {
             Nova Solicitação Avulsa
           </button>
         </div>
-
-        <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' } as CSSProperties}>
+        <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           <table style={{ width: '100%', minWidth: 680, borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #F1F5F9' }}>
