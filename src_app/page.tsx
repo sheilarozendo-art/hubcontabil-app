@@ -5,11 +5,10 @@ import type { CSSProperties } from "react"
 import Banner from "./components/BannerAlerta"
 import { I } from "./components/Icons"
 
-// ─── Sparkline ────────────────────────────────────────────────────────────────
+// ─── Sparkline ─────────────────────────────────────────────────────────────────
 
 function SparklineBars() {
   const bars = [6, 9, 7, 11, 8, 14, 10, 16, 12, 18]
-
   return (
     <div
       style={{
@@ -40,16 +39,14 @@ function SparklineBars() {
   )
 }
 
-// ─── Base styles ─────────────────────────────────────────────────────────────
+// ─── KPI Cards ─────────────────────────────────────────────────────────────────
 
 const card: CSSProperties = {
   background: "#FFFFFF",
   border: "1px solid #E2E8F0",
   borderRadius: 16,
-  padding: 20,
+  padding: "20px",
   boxShadow: "0 2px 12px rgba(3,3,3,0.04)",
-  boxSizing: "border-box",
-  width: "100%",
 }
 
 const pill = (bg: string, color: string): CSSProperties => ({
@@ -82,22 +79,18 @@ const mono = (size = 22): CSSProperties => ({
   marginBottom: 4,
 })
 
-// ─── KPI: Tributos ───────────────────────────────────────────────────────────
-
 function KPITributos() {
   return (
-    <div style={card}>
+    <div style={{ ...card }}>
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-start",
           marginBottom: 14,
-          gap: 10,
         }}
       >
         <span style={lbl}>Total de Tributos</span>
-
         <div
           style={{
             width: 32,
@@ -107,7 +100,6 @@ function KPITributos() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            flexShrink: 0,
           }}
         >
           <svg width="15" height="15" viewBox="0 0 14 14" fill="none">
@@ -126,9 +118,7 @@ function KPITributos() {
           </svg>
         </div>
       </div>
-
       <div style={mono(22)}>R$ 4.820,50</div>
-
       <div
         style={{
           fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -139,7 +129,6 @@ function KPITributos() {
       >
         3 de 4 guias pagas · Outubro
       </div>
-
       <div
         style={{
           background: "#F1F5F9",
@@ -157,7 +146,6 @@ function KPITributos() {
           }}
         />
       </div>
-
       <div
         style={{
           display: "flex",
@@ -174,7 +162,6 @@ function KPITributos() {
         >
           0%
         </span>
-
         <span
           style={{
             fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -190,26 +177,21 @@ function KPITributos() {
   )
 }
 
-// ─── KPI: Vencimento ─────────────────────────────────────────────────────────
-
 function KPIVencimento() {
   return (
-    <div style={card}>
+    <div style={{ ...card }}>
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-start",
-          gap: 10,
           marginBottom: 14,
         }}
       >
         <span style={lbl}>Próximo Vencimento</span>
         <span style={pill("#FEF3C7", "#D97706")}>A Vencer</span>
       </div>
-
       <div style={mono(26)}>20 Out</div>
-
       <div
         style={{
           fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -220,7 +202,6 @@ function KPIVencimento() {
       >
         DAS · Simples Nacional
       </div>
-
       <div
         style={{
           display: "inline-flex",
@@ -228,8 +209,6 @@ function KPIVencimento() {
           background: "#EFF6FF",
           borderRadius: 8,
           padding: "5px 12px",
-          maxWidth: "100%",
-          boxSizing: "border-box",
         }}
       >
         <span
@@ -246,11 +225,9 @@ function KPIVencimento() {
   )
 }
 
-// ─── KPI: Certificado ────────────────────────────────────────────────────────
-
 function KPICertificado() {
   return (
-    <div style={card}>
+    <div style={{ ...card }}>
       <div
         style={{
           display: "flex",
@@ -262,7 +239,6 @@ function KPICertificado() {
         <span style={lbl}>Certificado Digital</span>
         {I.shield}
       </div>
-
       <div
         style={{
           display: "flex",
@@ -281,7 +257,6 @@ function KPICertificado() {
             flexShrink: 0,
           }}
         />
-
         <span
           style={{
             fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -293,7 +268,6 @@ function KPICertificado() {
           Ativo & Seguro
         </span>
       </div>
-
       <div
         style={{
           fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -313,7 +287,6 @@ function KPICertificado() {
           18/11/2024
         </span>
       </div>
-
       <div
         style={{
           fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -324,7 +297,6 @@ function KPICertificado() {
       >
         e-CNPJ A1 · ICP-Brasil
       </div>
-
       <div
         style={{
           background: "#F1F5F9",
@@ -346,26 +318,21 @@ function KPICertificado() {
   )
 }
 
-// ─── KPI: Notas ──────────────────────────────────────────────────────────────
-
 function KPINotas() {
   return (
-    <div style={card}>
+    <div style={{ ...card }}>
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-start",
-          gap: 10,
           marginBottom: 14,
         }}
       >
         <span style={lbl}>Notas Fiscais</span>
         <span style={pill("#DCFCE7", "#15803D")}>+12% vs ant.</span>
       </div>
-
       <div style={mono(22)}>28 Emitidas</div>
-
       <div
         style={{
           fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -375,13 +342,12 @@ function KPINotas() {
       >
         Outubro 2024
       </div>
-
       <SparklineBars />
     </div>
   )
 }
 
-// ─── Obligations ─────────────────────────────────────────────────────────────
+// ─── Obligations Table ─────────────────────────────────────────────────────────
 
 const TABS = ["Todas", "Pendentes (1)", "Pagas (3)"]
 
@@ -429,12 +395,11 @@ const ROWS = [
 
 function ObrigacoesCard() {
   const [activeTab, setActiveTab] = useState("Todas")
-
-  const filtered = ROWS.filter((row) =>
+  const filtered = ROWS.filter((r) =>
     activeTab === "Pendentes (1)"
-      ? !row.paid
+      ? !r.paid
       : activeTab === "Pagas (3)"
-        ? row.paid
+        ? r.paid
         : true,
   )
 
@@ -450,28 +415,17 @@ function ObrigacoesCard() {
   }
 
   return (
-    <div
-      style={{
-        ...card,
-        padding: 0,
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          padding: "20px 24px 0",
-        }}
-      >
+    <div style={{ ...card, padding: 0, overflow: "hidden" }}>
+      <div style={{ padding: "20px 24px 0" }}>
         <div
           style={{
             display: "flex",
-            alignItems: "flex-start",
+            alignItems: "center",
             justifyContent: "space-between",
-            gap: 16,
             marginBottom: 16,
           }}
         >
-          <div style={{ minWidth: 0 }}>
+          <div>
             <div
               style={{
                 fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -482,7 +436,6 @@ function ObrigacoesCard() {
             >
               Obrigações e Guias
             </div>
-
             <div
               style={{
                 fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -494,13 +447,11 @@ function ObrigacoesCard() {
               Competência Setembro/2024
             </div>
           </div>
-
           <button
             style={{
               display: "flex",
               alignItems: "center",
               gap: 6,
-              flexShrink: 0,
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontWeight: 500,
               fontSize: 12,
@@ -515,54 +466,39 @@ function ObrigacoesCard() {
             Outubro 2024 {I.chevDown}
           </button>
         </div>
-
         <div
-          style={{
-            display: "flex",
-            gap: 0,
-            borderBottom: "1px solid #F1F5F9",
-            overflowX: "auto",
-          }}
+          style={{ display: "flex", gap: 0, borderBottom: "1px solid #F1F5F9" }}
         >
-          {TABS.map((tab) => (
+          {TABS.map((t) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
+              key={t}
+              onClick={() => setActiveTab(t)}
               style={{
                 fontFamily: "'Plus Jakarta Sans', sans-serif",
-                fontWeight: activeTab === tab ? 700 : 500,
+                fontWeight: activeTab === t ? 700 : 500,
                 fontSize: 12.5,
-                color: activeTab === tab ? "#1D4ED8" : "#64748B",
+                color: activeTab === t ? "#1D4ED8" : "#64748B",
                 background: "none",
                 border: "none",
                 borderBottom:
-                  activeTab === tab
+                  activeTab === t
                     ? "2px solid #1D4ED8"
                     : "2px solid transparent",
                 padding: "8px 14px",
                 cursor: "pointer",
                 marginBottom: -1,
-                whiteSpace: "nowrap",
-                flexShrink: 0,
               }}
             >
-              {tab}
+              {t}
             </button>
           ))}
         </div>
       </div>
 
-      <div
-        style={{
-          width: "100%",
-          overflowX: "auto",
-          WebkitOverflowScrolling: "touch",
-        }}
-      >
+      <div style={{ width: "100%", overflowX: "auto", minWidth: 0 }}>
         <table
           style={{
             width: "100%",
-            minWidth: 760,
             borderCollapse: "collapse",
             textAlign: "left",
           }}
@@ -579,36 +515,29 @@ function ObrigacoesCard() {
               <th style={th}>Vencimento</th>
               <th style={th}>Valor</th>
               <th style={th}>Situação</th>
-              <th
-                style={{
-                  ...th,
-                  textAlign: "right",
-                  paddingRight: 24,
-                }}
-              >
+              <th style={{ ...th, textAlign: "right", paddingRight: 24 }}>
                 Ações
               </th>
             </tr>
           </thead>
-
           <tbody>
             {filtered.map((row, i) => (
               <tr
                 key={i}
                 style={{
                   borderBottom:
-                    i < filtered.length - 1
-                      ? "1px solid #F8FAFC"
-                      : "none",
+                    i < filtered.length - 1 ? "1px solid #F8FAFC" : "none",
                 }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.background = "#FAFAFA")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.background = "transparent")
+                }
               >
                 <td style={{ padding: "14px 16px 14px 24px" }}>
                   <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 9,
-                    }}
+                    style={{ display: "flex", alignItems: "center", gap: 9 }}
                   >
                     <span
                       style={{
@@ -625,7 +554,6 @@ function ObrigacoesCard() {
                     >
                       {row.tag}
                     </span>
-
                     <span
                       style={{
                         fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -639,7 +567,6 @@ function ObrigacoesCard() {
                     </span>
                   </div>
                 </td>
-
                 <td
                   style={{
                     padding: "14px 16px",
@@ -651,7 +578,6 @@ function ObrigacoesCard() {
                 >
                   {row.comp}
                 </td>
-
                 <td
                   style={{
                     padding: "14px 16px",
@@ -663,7 +589,6 @@ function ObrigacoesCard() {
                 >
                   {row.venc}
                 </td>
-
                 <td
                   style={{
                     padding: "14px 16px",
@@ -675,18 +600,9 @@ function ObrigacoesCard() {
                 >
                   {row.valor}
                 </td>
-
-                <td
-                  style={{
-                    padding: "14px 16px",
-                    whiteSpace: "nowrap",
-                  }}
-                >
+                <td style={{ padding: "14px 16px", whiteSpace: "nowrap" }}>
                   <span
-                    style={{
-                      ...pill(row.statusBg, row.statusColor),
-                      gap: 5,
-                    }}
+                    style={{ ...pill(row.statusBg, row.statusColor), gap: 5 }}
                   >
                     {row.paid ? (
                       I.check("#10B981", 12)
@@ -701,14 +617,12 @@ function ObrigacoesCard() {
                         }}
                       />
                     )}
-
                     {row.status}
                   </span>
                 </td>
-
                 <td
                   style={{
-                    padding: "14px 16px",
+                    padding: "14px 16px 14px",
                     paddingRight: 24,
                     textAlign: "right",
                   }}
@@ -723,7 +637,6 @@ function ObrigacoesCard() {
                     {!row.paid ? (
                       <>
                         <button
-                          aria-label="Copiar código"
                           style={{
                             width: 28,
                             height: 28,
@@ -738,7 +651,6 @@ function ObrigacoesCard() {
                         >
                           {I.copy}
                         </button>
-
                         <button
                           style={{
                             display: "flex",
@@ -753,7 +665,6 @@ function ObrigacoesCard() {
                             borderRadius: 7,
                             padding: "5px 10px",
                             cursor: "pointer",
-                            whiteSpace: "nowrap",
                           }}
                         >
                           {I.download} Baixar PDF
@@ -774,7 +685,6 @@ function ObrigacoesCard() {
                           borderRadius: 7,
                           padding: "5px 10px",
                           cursor: "pointer",
-                          whiteSpace: "nowrap",
                         }}
                       >
                         {I.check("#10B981", 12)} Comprovante
@@ -791,7 +701,7 @@ function ObrigacoesCard() {
   )
 }
 
-// ─── Quick Actions ───────────────────────────────────────────────────────────
+// ─── Quick Actions ─────────────────────────────────────────────────────────────
 
 function AcoesCard() {
   const [dragging, setDragging] = useState(false)
@@ -852,16 +762,8 @@ function AcoesCard() {
     {
       icon: (
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <rect
-            width="22"
-            height="22"
-            rx="8"
-            fill="rgba(161,85,255,0.1)"
-          />
-          <path
-            d="M13 4L7.5 11.5H11L9 18l7-9H12L13 4z"
-            fill="#A155FF"
-          />
+          <rect width="22" height="22" rx="8" fill="rgba(161,85,255,0.1)" />
+          <path d="M13 4L7.5 11.5H11L9 18l7-9H12L13 4z" fill="#A155FF" />
         </svg>
       ),
       title: "Emitir Nota Fiscal (NFS-e)",
@@ -871,26 +773,9 @@ function AcoesCard() {
     {
       icon: (
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <rect
-            width="22"
-            height="22"
-            rx="8"
-            fill="rgba(67,193,239,0.1)"
-          />
-          <circle
-            cx="8"
-            cy="9"
-            r="2.5"
-            stroke="#43C1EF"
-            strokeWidth="1.3"
-          />
-          <circle
-            cx="14"
-            cy="9"
-            r="2.5"
-            stroke="#43C1EF"
-            strokeWidth="1.3"
-          />
+          <rect width="22" height="22" rx="8" fill="rgba(67,193,239,0.1)" />
+          <circle cx="8" cy="9" r="2.5" stroke="#43C1EF" strokeWidth="1.3" />
+          <circle cx="14" cy="9" r="2.5" stroke="#43C1EF" strokeWidth="1.3" />
           <path
             d="M4 17c0-2.2 1.8-4 4-4h4c2.2 0 4 1.8 4 4"
             stroke="#43C1EF"
@@ -918,30 +803,21 @@ function AcoesCard() {
       >
         Ações Rápidas
       </div>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 10,
-        }}
-      >
-        {items.map((item, i) => (
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {items.map((a, i) => (
           <div
             key={i}
             onDragOver={
-              item.special
+              a.special
                 ? (e) => {
                     e.preventDefault()
                     setDragging(true)
                   }
                 : undefined
             }
-            onDragLeave={
-              item.special ? () => setDragging(false) : undefined
-            }
+            onDragLeave={a.special ? () => setDragging(false) : undefined}
             onDrop={
-              item.special
+              a.special
                 ? (e) => {
                     e.preventDefault()
                     setDragging(false)
@@ -954,19 +830,24 @@ function AcoesCard() {
               gap: 12,
               padding: "11px 14px",
               background:
-                dragging && item.special
-                  ? "rgba(29,78,216,0.04)"
-                  : "#F8FAFC",
+                dragging && a.special ? "rgba(29,78,216,0.04)" : "#F8FAFC",
               border:
-                dragging && item.special
+                dragging && a.special
                   ? "1.5px dashed #1D4ED8"
                   : "1px solid #F1F5F9",
               borderRadius: 11,
               cursor: "pointer",
               transition: "all 0.15s",
             }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = a.accent + "50"
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor =
+                dragging && a.special ? "#1D4ED8" : "#F1F5F9"
+            }}
           >
-            {item.special ? (
+            {a.special ? (
               <div
                 style={{
                   width: 38,
@@ -983,15 +864,9 @@ function AcoesCard() {
                 {I.upload}
               </div>
             ) : (
-              <div style={{ flexShrink: 0 }}>{item.icon}</div>
+              <div style={{ flexShrink: 0 }}>{a.icon}</div>
             )}
-
-            <div
-              style={{
-                flex: 1,
-                minWidth: 0,
-              }}
-            >
+            <div style={{ flex: 1 }}>
               <div
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -1000,9 +875,8 @@ function AcoesCard() {
                   color: "#030303",
                 }}
               >
-                {item.title}
+                {a.title}
               </div>
-
               <div
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -1011,23 +885,21 @@ function AcoesCard() {
                   marginTop: 1,
                 }}
               >
-                {item.sub}
+                {a.sub}
               </div>
             </div>
-
             <div
               style={{
                 width: 26,
                 height: 26,
                 borderRadius: 8,
-                background: item.accent + "14",
+                background: a.accent + "14",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                flexShrink: 0,
               }}
             >
-              {I.arrow(item.accent)}
+              {I.arrow(a.accent)}
             </div>
           </div>
         ))}
@@ -1036,25 +908,13 @@ function AcoesCard() {
   )
 }
 
-// ─── Calendar ────────────────────────────────────────────────────────────────
+// ─── Calendar Card ─────────────────────────────────────────────────────────────
 
 const CAL = [
   { date: "07 Out", label: "Prazo Envio Extratos", state: "done" },
-  {
-    date: "15 Out",
-    label: "Fechamento Pró-labore e Folha",
-    state: "today",
-  },
-  {
-    date: "20 Out",
-    label: "Vencimento Simples Nacional",
-    state: "amber",
-  },
-  {
-    date: "31 Out",
-    label: "Prazo Limite NF-e Entradas",
-    state: "upcoming",
-  },
+  { date: "15 Out", label: "Fechamento Pró-labore e Folha", state: "today" },
+  { date: "20 Out", label: "Vencimento Simples Nacional", state: "amber" },
+  { date: "31 Out", label: "Prazo Limite NF-e Entradas", state: "upcoming" },
 ]
 
 function CalendarioCard() {
@@ -1064,15 +924,13 @@ function CalendarioCard() {
     amber: "#F59E0B",
     upcoming: "#CBD5E1",
   }
-
   return (
     <div style={card}>
       <div
         style={{
           display: "flex",
-          alignItems: "flex-start",
+          alignItems: "center",
           justifyContent: "space-between",
-          gap: 10,
           marginBottom: 4,
         }}
       >
@@ -1086,12 +944,8 @@ function CalendarioCard() {
         >
           Rotinas Fiscais
         </div>
-
-        <span style={pill("#EFF6FF", "#1D4ED8")}>
-          Hoje: 15 Ter
-        </span>
+        <span style={pill("#EFF6FF", "#1D4ED8")}>Hoje: 15 Ter</span>
       </div>
-
       <div
         style={{
           fontFamily: "'Michroma', monospace",
@@ -1103,22 +957,11 @@ function CalendarioCard() {
       >
         OUTUBRO 2024
       </div>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 14,
-        }}
-      >
+      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
         {CAL.map((item, i) => (
           <div
             key={i}
-            style={{
-              display: "flex",
-              gap: 12,
-              alignItems: "center",
-            }}
+            style={{ display: "flex", gap: 12, alignItems: "center" }}
           >
             <div
               style={{
@@ -1133,14 +976,12 @@ function CalendarioCard() {
                     : "none",
               }}
             />
-
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 gap: 10,
                 flex: 1,
-                minWidth: 0,
               }}
             >
               <span
@@ -1153,7 +994,6 @@ function CalendarioCard() {
               >
                 {item.date}
               </span>
-
               <span
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -1166,9 +1006,7 @@ function CalendarioCard() {
                         ? "#030303"
                         : "#374151",
                   textDecoration:
-                    item.state === "done"
-                      ? "line-through"
-                      : "none",
+                    item.state === "done" ? "line-through" : "none",
                 }}
               >
                 {item.label}
@@ -1181,7 +1019,7 @@ function CalendarioCard() {
   )
 }
 
-// ─── Invoice ─────────────────────────────────────────────────────────────────
+// ─── Invoice Card ──────────────────────────────────────────────────────────────
 
 function FaturaCard() {
   return (
@@ -1191,7 +1029,6 @@ function FaturaCard() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: 10,
           marginBottom: 14,
         }}
       >
@@ -1205,12 +1042,10 @@ function FaturaCard() {
         >
           Fatura Contábil
         </div>
-
         <span style={pill("#DCFCE7", "#15803D")}>
           {I.check("#10B981", 11)} Pago
         </span>
       </div>
-
       <div
         style={{
           display: "flex",
@@ -1228,7 +1063,6 @@ function FaturaCard() {
         >
           R$ 450,00
         </span>
-
         <span
           style={{
             fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -1239,7 +1073,6 @@ function FaturaCard() {
           /mês
         </span>
       </div>
-
       <div
         style={{
           display: "flex",
@@ -1249,7 +1082,6 @@ function FaturaCard() {
         }}
       >
         {I.check("#10B981", 13)}
-
         <span
           style={{
             fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -1260,7 +1092,6 @@ function FaturaCard() {
           Pago via PIX no dia 05/10
         </span>
       </div>
-
       <button
         style={{
           display: "flex",
@@ -1285,7 +1116,7 @@ function FaturaCard() {
   )
 }
 
-// ─── Accountant ──────────────────────────────────────────────────────────────
+// ─── Accountant Card ───────────────────────────────────────────────────────────
 
 function ContadorCard() {
   return (
@@ -1294,15 +1125,10 @@ function ContadorCard() {
         background: "linear-gradient(135deg, #1D4ED8, #A155FF)",
         padding: 1.5,
         borderRadius: 17,
-        boxSizing: "border-box",
       }}
     >
       <div
-        style={{
-          background: "#FFFFFF",
-          borderRadius: 15.5,
-          padding: 20,
-        }}
+        style={{ background: "#FFFFFF", borderRadius: 15.5, padding: "20px" }}
       >
         <div
           style={{
@@ -1315,7 +1141,6 @@ function ContadorCard() {
         >
           Seu Contador Dedicado
         </div>
-
         <div
           style={{
             display: "flex",
@@ -1329,8 +1154,7 @@ function ContadorCard() {
               width: 44,
               height: 44,
               borderRadius: "50%",
-              background:
-                "linear-gradient(135deg, #1D4ED8, #A155FF)",
+              background: "linear-gradient(135deg, #1D4ED8, #A155FF)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -1343,8 +1167,7 @@ function ContadorCard() {
           >
             CE
           </div>
-
-          <div style={{ minWidth: 0 }}>
+          <div>
             <div
               style={{
                 fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -1355,7 +1178,6 @@ function ContadorCard() {
             >
               Carlos Eduardo
             </div>
-
             <div
               style={{
                 fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -1365,7 +1187,6 @@ function ContadorCard() {
             >
               CRC-SP · Contador Responsável
             </div>
-
             <div
               style={{
                 display: "flex",
@@ -1382,7 +1203,6 @@ function ContadorCard() {
                   background: "#22C55E",
                 }}
               />
-
               <span
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -1396,13 +1216,7 @@ function ContadorCard() {
             </div>
           </div>
         </div>
-
-        <div
-          style={{
-            display: "flex",
-            gap: 8,
-          }}
-        >
+        <div style={{ display: "flex", gap: 8 }}>
           <button
             style={{
               flex: 1,
@@ -1423,9 +1237,8 @@ function ContadorCard() {
           >
             {I.meet} Meet
           </button>
-
           <a
-            href="https://wa.me/5521993253591?text=Ol%C3%A1!%20Acessei%20o%20HubCont%C3%A1bil"
+            href="https://wa.me/5521993253591?text=Ol%C3%A1!%20Acessei%20o%20HubCont%C3%A1bil."
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -1454,128 +1267,54 @@ function ContadorCard() {
   )
 }
 
-// ─── Dashboard ────────────────────────────────────────────────────────────────
+// ─── Dashboard content (route: /) ─────────────────────────────────────────────
 
 export default function DashboardPage() {
   const [banner, setBanner] = useState(true)
-
   return (
     <>
       <style>{`
-        .hub-dashboard {
-          width: 100%;
-          min-width: 0;
-        }
-
         .hub-kpi-grid {
           display: grid;
           grid-template-columns: 1fr;
           gap: 16px;
         }
-
+        @media (min-width: 640px) {
+          .hub-kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        }
+        @media (min-width: 1280px) {
+          .hub-kpi-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        }
         .hub-split {
           display: flex;
           flex-direction: column;
           gap: 24px;
         }
-
-        .hub-col-main,
-        .hub-col-side {
-          min-width: 0;
-          width: 100%;
-        }
-
-        @media (min-width: 640px) {
-          .hub-kpi-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
-          }
-        }
-
         @media (min-width: 1024px) {
-          .hub-split {
-            flex-direction: row;
-            align-items: flex-start;
-            gap: 28px;
-          }
-
-          .hub-col-main {
-            flex: 1;
-            min-width: 0;
-          }
-
-          .hub-col-side {
-            width: 300px;
-            flex-shrink: 0;
-          }
+          .hub-split { flex-direction: row; gap: 28px; align-items: flex-start; }
+          .hub-col-main { flex: 1; min-width: 0; }
+          .hub-col-side { width: 300px; flex-shrink: 0; }
         }
-
         @media (min-width: 1280px) {
-          .hub-kpi-grid {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 20px;
-          }
-
-          .hub-col-side {
-            width: 320px;
-          }
-        }
-
-        @media (max-width: 639px) {
-          .hub-dashboard {
-            overflow-x: hidden;
-          }
-        }
-
-        @media (max-width: 479px) {
-          .hub-split {
-            gap: 16px;
-          }
+          .hub-col-side { width: 320px; }
         }
       `}</style>
-
-      <div className="hub-dashboard">
-        {banner && (
-          <Banner onClose={() => setBanner(false)} />
-        )}
-
-        <div className="hub-kpi-grid">
-          <KPITributos />
-          <KPIVencimento />
-          <KPICertificado />
-          <KPINotas />
+      {banner && <Banner onClose={() => setBanner(false)} />}
+      <div className="hub-kpi-grid">
+        <KPITributos />
+        <KPIVencimento />
+        <KPICertificado />
+        <KPINotas />
+      </div>
+      <div className="hub-split">
+        <div className="hub-col-main" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <ObrigacoesCard />
+          <AcoesCard />
         </div>
-
-        <div
-          className="hub-split"
-          style={{
-            marginTop: 24,
-          }}
-        >
-          <div
-            className="hub-col-main"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 24,
-            }}
-          >
-            <ObrigacoesCard />
-            <AcoesCard />
-          </div>
-
-          <div
-            className="hub-col-side"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 20,
-            }}
-          >
-            <CalendarioCard />
-            <FaturaCard />
-            <ContadorCard />
-          </div>
+        <div className="hub-col-side" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          <CalendarioCard />
+          <FaturaCard />
+          <ContadorCard />
         </div>
       </div>
     </>

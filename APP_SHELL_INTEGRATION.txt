@@ -1,0 +1,12 @@
+// Exemplo de integração caso o projeto use Next App Router com route groups:
+//
+// app/(app)/layout.tsx
+// ---------------------
+// import AppShell from "@/hubcontabil-app/src_app/components/AppShell"
+//
+// export default function AppLayout({ children }: { children: React.ReactNode }) {
+//   return <AppShell>{children}</AppShell>
+// }
+//
+// Mova as páginas autenticadas para esse route group.
+// Deixe `login/page.tsx` fora do grupo para não receber Sidebar/Topbar/Footer.

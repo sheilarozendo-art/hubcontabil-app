@@ -124,9 +124,8 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
           top: 0,
           left: 0,
           bottom: 0,
-          width: 276,
+          width: 264,
           background: "#FFFFFF",
-          boxSizing: "border-box",
           borderRight: "1px solid #E2E8F0",
           display: "flex",
           flexDirection: "column",
@@ -141,7 +140,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
             height: 64,
             display: "flex",
             alignItems: "center",
-            padding: "0 24px",
+            padding: "0 20px",
             borderBottom: "1px solid #F1F5F9",
             flexShrink: 0,
           }}
@@ -164,7 +163,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
         </div>
 
         {/* Company selector */}
-        <div style={{ padding: "16px 18px 0" }}>
+        <div style={{ padding: "14px 14px 0" }}>
           <button
             style={{
               width: "100%",
@@ -230,7 +229,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
         </div>
 
         {/* Nav */}
-        <nav style={{ flex: 1, padding: "8px 18px", overflowY: "auto" }}>
+        <nav style={{ flex: 1, padding: "8px 14px", overflowY: "auto" }}>
           <div
             style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -255,10 +254,10 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
                   width: "100%",
                   display: "flex",
                   alignItems: "center",
-                  gap: 12,
+                  gap: 10,
                   background: isActive ? "#EFF6FF" : "transparent",
                   borderRadius: 9,
-                  padding: "9px 12px",
+                  padding: "9px 10px",
                   cursor: "pointer",
                   color: isActive ? "#1D4ED8" : "#64748B",
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -306,10 +305,10 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
               width: "100%",
               display: "flex",
               alignItems: "center",
-              gap: 12,
+              gap: 10,
               background: "transparent",
               borderRadius: 9,
-              padding: "9px 12px",
+              padding: "9px 10px",
               cursor: "pointer",
               color: "#64748B",
               fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -328,7 +327,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
           href="/login"
           style={{
             display: "block",
-            padding: "16px 18px",
+            padding: "12px 14px",
             borderTop: "1px solid #F1F5F9",
             flexShrink: 0,
             textDecoration: "none",

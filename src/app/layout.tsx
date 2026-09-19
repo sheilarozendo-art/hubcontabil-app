@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Michroma, Inter } from "next/font/google";
 import "./globals.css";
+import AppShell from "./components/AppShell";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -31,8 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${plusJakarta.variable} ${michroma.variable} ${inter.className} antialiased bg-[#F5F7FB] text-[#030303] m-0 p-0`}>
-        {children}
+      <body
+        className={`${plusJakarta.variable} ${michroma.variable} ${inter.className} antialiased bg-[#F5F7FB] text-[#030303] m-0 p-0`}
+      >
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

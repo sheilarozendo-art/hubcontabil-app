@@ -21,32 +21,60 @@
   box-shadow: 0px 1px 3px rgba(3, 3, 3, 0.04), 0px 6px 16px rgba(3, 3, 3, 0.02);
 }
 
-/* ─── CONTAINER PRINCIPAL FLUIDO DO DASHBOARD ─── */
+/* ─── CONTAINER PRINCIPAL FLUIDO (mesmo recuo em todas as páginas) ─── */
 .hub-main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 24px;
   width: 100%;
-  max-width: 1360px;
-  padding: 24px 32px;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 24px 16px;
   box-sizing: border-box;
   min-width: 0;
 }
 
-/* ─── GRADE DOS 4 CARDS (DESKTOP: 4 COLUNAS LADO A LADO) ─── */
+@media (min-width: 640px) {
+  .hub-main-content {
+    padding: 24px 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hub-main-content {
+    padding: 24px 32px;
+  }
+}
+
+/* ─── GRADE DOS 4 CARDS ─── */
 .hub-kpi-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   gap: 16px;
   align-items: start;
   width: 100%;
+  min-width: 0;
 }
 
-/* ─── LAYOUT DIVIDIDO (DESKTOP: COLUNA ESQUERDA + COLUNA DIREITA) ─── */
-.hub-split-grid {
+@media (min-width: 640px) {
+  .hub-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hub-kpi-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ─── LAYOUT DIVIDIDO ─── */
+.hub-split-grid,
+.hub-split {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 24px;
   align-items: flex-start;
   width: 100%;
@@ -54,7 +82,7 @@
 }
 
 .hub-col-main {
-  flex: 1;
+  width: 100%;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -62,41 +90,46 @@
 }
 
 .hub-col-side {
-  width: 340px;
-  flex-shrink: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-/* ─── TABLET (iPad <= 1024px) ─── */
-@media (max-width: 1024px) {
-  .hub-main-content {
-    padding: 20px 20px;
-    gap: 20px;
+@media (min-width: 1024px) {
+  .hub-split-grid,
+  .hub-split {
+    flex-direction: row;
   }
-  .hub-kpi-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .hub-split-grid {
-    flex-direction: column;
+  .hub-col-main {
+    flex: 1;
   }
   .hub-col-side {
-    width: 100%;
+    width: 340px;
+    flex-shrink: 0;
   }
 }
 
-/* ─── CELULAR (iPhone / Pixel <= 640px) ─── */
-@media (max-width: 640px) {
-  .hub-main-content {
-    padding: 16px 14px;
-    gap: 16px;
-  }
-  .hub-kpi-grid {
-    grid-template-columns: 1fr;
-    gap: 16px; /* O ESPAÇO ELEGANTE QUE VOCÊ PEDIU! */
-  }
+/* Abas horizontais no celular */
+.tabs-scroll {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 8px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabs-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  min-width: 0;
 }
 
 /* Scrollbar suave e fina para tabelas */
