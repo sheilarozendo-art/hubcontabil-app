@@ -30,7 +30,10 @@ function NavIcon({ id }: { id: string }) {
     folha: (
       <>
         <circle cx="10" cy="7" r="3" />
-        <path d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6" strokeLinecap="round" />
+        <path
+          d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6"
+          strokeLinecap="round"
+        />
       </>
     ),
     docs: (
@@ -55,6 +58,7 @@ function NavIcon({ id }: { id: string }) {
       </>
     ),
   }
+
   return (
     <svg
       width="18"
@@ -71,39 +75,72 @@ function NavIcon({ id }: { id: string }) {
 }
 
 const NAV = [
-  { id: "dashboard",    label: "Dashboard",            href: "/" },
-  { id: "guias",        label: "Guias & Tributos",     href: "/tributos" },
-  { id: "notas",        label: "Notas Fiscais",        href: "/notas" },
-  { id: "folha",        label: "Folha de Pagamento",   href: "/folhas" },
-  { id: "docs",         label: "Documentos",           href: "/documentos" },
-  { id: "solicitacoes", label: "Solicitações",         href: "/solicitacoes" },
+  { id: "dashboard", label: "Dashboard", href: "/" },
+  { id: "guias", label: "Guias & Tributos", href: "/tributos" },
+  { id: "notas", label: "Notas Fiscais", href: "/notas" },
+  { id: "folha", label: "Folha de Pagamento", href: "/folhas" },
+  { id: "docs", label: "Documentos", href: "/documentos" },
+  { id: "solicitacoes", label: "Solicitações", href: "/solicitacoes" },
 ]
 
 function useActiveNav() {
   const pathname = usePathname()
+
   if (pathname === "/") return "dashboard"
-  const match = NAV.find(n => n.href !== "/" && pathname.startsWith(n.href))
+
+  const match = NAV.find(
+    (n) => n.href !== "/" && pathname.startsWith(n.href),
+  )
+
   return match?.id ?? "dashboard"
 }
 
 // ─── Sidebar ───────────────────────────────────────────────────────────────────
 
-export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onClose: () => void }) {
+export default function Sidebar({
+  mobileOpen,
+  onClose,
+}: {
+  mobileOpen: boolean
+  onClose: () => void
+}) {
   const active = useActiveNav()
+
   return (
     <>
       <style>{`
-        .sidebar-root { transform: translateX(-100%); }
-        @media (min-width: 1024px) {
-          .sidebar-root { transform: translateX(0) !important; position: sticky !important; top: 0; height: 100vh; }
-          .sidebar-close-btn { display: none !important; }
+        .sidebar-root {
+          transform: translateX(-100%);
         }
+
+        @media (min-width: 1024px) {
+          .sidebar-root {
+            transform: translateX(0) !important;
+            position: sticky !important;
+            top: 0;
+            height: 100vh;
+          }
+
+          .sidebar-close-btn {
+            display: none !important;
+          }
+        }
+
         @media (max-width: 1023px) {
-          .sidebar-root { transform: translateX(-100%); }
-          .sidebar-root.open { transform: translateX(0) !important; }
-          .sidebar-close-btn { display: flex !important; }
+          .sidebar-root {
+            transform: translateX(-100%);
+          }
+
+          .sidebar-root.open {
+            transform: translateX(0) !important;
+          }
+
+          .sidebar-close-btn {
+            display: flex !important;
+          }
         }
       `}</style>
+
       {/* Mobile overlay */}
       {mobileOpen && (
         <div
@@ -147,6 +184,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
           }}
         >
           <HubContabilLogo />
+
           <button
             onClick={onClose}
             className="sidebar-close-btn"
@@ -167,9 +205,9 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
         <div style={{ padding: "16px 18px 0" }}>
           <button
             style={{
-              width: "100%",
+              width: "calc(100% - 16px)",
               display: "flex",
-              alignItems: "center",
+              alignSelf: "flex-start",
               gap: 10,
               background: "#F8FAFC",
               border: "1px solid #E2E8F0",
@@ -197,6 +235,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
             >
               TF
             </div>
+
             <div style={{ flex: 1, minWidth: 0 }}>
               <div
                 style={{
@@ -211,6 +250,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
               >
                 Tech Founders Ltda
               </div>
+
               <div
                 style={{
                   fontFamily: "'Michroma', monospace",
@@ -225,12 +265,19 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
                 CNPJ 12.345.678/0001-90
               </div>
             </div>
+
             {I.chevDown}
           </button>
         </div>
 
         {/* Nav */}
-        <nav style={{ flex: 1, padding: "8px 18px", overflowY: "auto" }}>
+        <nav
+          style={{
+            flex: 1,
+            padding: "8px 18px",
+            overflowY: "auto",
+          }}
+        >
           <div
             style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -244,20 +291,23 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
           >
             Menu
           </div>
+
           {NAV.map((item) => {
             const isActive = item.id === active
+
             return (
               <Link
                 key={item.id}
                 href={item.href}
                 onClick={onClose}
                 style={{
-                  width: "100%",
+                  width: isActive ? "calc(100% - 16px)" : "100%",
+                  boxSizing: "border-box",
                   display: "flex",
                   alignItems: "center",
                   gap: 12,
                   background: isActive ? "#EFF6FF" : "transparent",
-                  borderRadius: 9,
+                  borderRadius: 10,
                   padding: "9px 12px",
                   cursor: "pointer",
                   color: isActive ? "#1D4ED8" : "#64748B",
@@ -270,7 +320,9 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
                 }}
               >
                 <NavIcon id={item.id} />
+
                 {item.label}
+
                 {isActive && (
                   <div
                     style={{
@@ -286,6 +338,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
             )
           })}
 
+          {/* Conta */}
           <div
             style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -299,6 +352,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
           >
             Conta
           </div>
+
           <Link
             href="/configuracoes"
             onClick={onClose}
@@ -334,7 +388,13 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
             textDecoration: "none",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+            }}
+          >
             <div
               style={{
                 width: 34,
@@ -353,6 +413,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
             >
               JS
             </div>
+
             <div style={{ flex: 1, minWidth: 0 }}>
               <div
                 style={{
@@ -367,6 +428,7 @@ export default function Sidebar({ mobileOpen, onClose }: { mobileOpen: boolean; 
               >
                 João da Silva
               </div>
+
               <div
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",

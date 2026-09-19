@@ -1536,8 +1536,10 @@ export default function DashboardPage() {
 
       <div className="hub-dashboard">
         {banner && (
-          <Banner onClose={() => setBanner(false)} />
-        )}
+  <div style={{ marginBottom: 24 }}>
+    <Banner onClose={() => setBanner(false)} />
+  </div>
+)}
 
         <div className="hub-kpi-grid">
           <KPITributos />
